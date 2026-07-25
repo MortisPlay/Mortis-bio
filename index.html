@@ -3360,7 +3360,8 @@
     }
 
     function updateEmailVerifyUI() {
-        const isVerified = currentUser && currentUser.emailVerified === true;
+        // Если поле emailVerified отсутствует (старые пользователи) — считаем email подтверждённым
+        const isVerified = currentUser && (currentUser.emailVerified === true || currentUser.emailVerified === undefined);
         const verifiedBadge = document.getElementById('profileEmailVerifiedBadge');
         const notVerifiedBadge = document.getElementById('profileEmailNotVerifiedBadge');
         const verifyBtn = document.getElementById('profileVerifyEmailBtn');
@@ -3861,6 +3862,21 @@
                     }
                 } catch(e) {
                     console.warn('[handleLogin] Ошибка синхронизации с Firebase:', e);
+                }
+            }
+
+            // ✅ Если пользователь подтвердил вход через код на email,
+            //    значит email реально его — автоматически подтверждаем email
+            if (userData.emailVerified === false || userData.emailVerified === undefined) {
+                userData.emailVerified = true;
+                if (firebaseInitialized && foundInFirebase) {
+                    try {
+                        const db = firebase.database();
+                        await db.ref('users/' + uid + '/emailVerified').set(true);
+                        console.log('[handleLogin] Email автоматически подтверждён при входе для', userData.email);
+                    } catch(e) {
+                        console.warn('[handleLogin] Ошибка сохранения emailVerified в Firebase:', e);
+                    }
                 }
             }
             

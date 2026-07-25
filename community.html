@@ -2183,6 +2183,7 @@
           emailVerifiedEl.style.color = '#f59e0b';
           emailVerifiedEl.style.display = 'inline-flex';
         } else {
+          // Если пользователь в БД, но поле emailVerified отсутствует (старые аккаунты) — скрываем плашку
           emailVerifiedEl.style.display = 'none';
         }
       }
