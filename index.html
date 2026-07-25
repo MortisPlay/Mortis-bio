@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -501,6 +501,7 @@
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(14, 165, 233, 0.12));
       border: 1px solid rgba(99, 102, 241, 0.2);
     }
+
 
     header {
       position: fixed;
@@ -1056,37 +1057,38 @@
       animation-play-state: paused;
     }
     
-    /* ===== ХАКЕРСКИЕ АНИМАЦИИ ДЛЯ БЕЙДЖА ЭЛИТА ===== */
-    /* Пульсирующее неоновое свечение (пиксельный хакерский стиль) */
+    /* ===== АНИМАЦИЯ ПЛАВНОГО ДЫХАНИЯ (МЕДЛЕННОЕ ЗАТУХАНИЕ) ДЛЯ БЕЙДЖЕЙ ===== */
+    /* Синее свечение (official) */
+    @keyframes badgeGlowBlue {
+      0% { box-shadow: 0 0 6px rgba(29, 161, 242, 0.4), 0 0 12px rgba(29, 161, 242, 0.15); }
+      30% { box-shadow: 0 0 14px rgba(29, 161, 242, 0.7), 0 0 35px rgba(29, 161, 242, 0.35), 0 0 55px rgba(29, 161, 242, 0.12); }
+      60% { box-shadow: 0 0 10px rgba(29, 161, 242, 0.55), 0 0 24px rgba(29, 161, 242, 0.25); }
+      100% { box-shadow: 0 0 6px rgba(29, 161, 242, 0.4), 0 0 12px rgba(29, 161, 242, 0.15); }
+    }
+    /* Жёлтое свечение (donater) */
+    @keyframes badgeGlowYellow {
+      0% { box-shadow: 0 0 6px rgba(245, 158, 11, 0.4), 0 0 12px rgba(245, 158, 11, 0.15); }
+      30% { box-shadow: 0 0 14px rgba(245, 158, 11, 0.7), 0 0 35px rgba(245, 158, 11, 0.35), 0 0 55px rgba(245, 158, 11, 0.12); }
+      60% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.55), 0 0 24px rgba(245, 158, 11, 0.25); }
+      100% { box-shadow: 0 0 6px rgba(245, 158, 11, 0.4), 0 0 12px rgba(245, 158, 11, 0.15); }
+    }
+    /* Фиолетовое свечение (beta_tester) */
+    @keyframes badgeGlowPurple {
+      0% { box-shadow: 0 0 6px rgba(139, 92, 246, 0.4), 0 0 12px rgba(139, 92, 246, 0.15); }
+      30% { box-shadow: 0 0 14px rgba(139, 92, 246, 0.7), 0 0 35px rgba(139, 92, 246, 0.35), 0 0 55px rgba(139, 92, 246, 0.12); }
+      60% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.55), 0 0 24px rgba(139, 92, 246, 0.25); }
+      100% { box-shadow: 0 0 6px rgba(139, 92, 246, 0.4), 0 0 12px rgba(139, 92, 246, 0.15); }
+    }
+    /* ===== ХАКЕРСКОЕ СВЕЧЕНИЕ ДЛЯ БЕЙДЖА ЭЛИТА ===== */
     @keyframes hackerGlow {
-      0% { box-shadow: 0 0 3px rgba(0, 255, 65, 0.3), 0 0 10px rgba(0, 255, 65, 0.15), inset 0 0 3px rgba(0, 255, 65, 0.05); }
-      15% { box-shadow: 0 0 8px rgba(0, 255, 65, 0.7), 0 0 25px rgba(0, 255, 65, 0.35), inset 0 0 8px rgba(0, 255, 65, 0.2); }
-      30% { box-shadow: 0 0 3px rgba(0, 255, 65, 0.3), 0 0 10px rgba(0, 255, 65, 0.15), inset 0 0 3px rgba(0, 255, 65, 0.05); }
-      45% { box-shadow: 0 0 15px rgba(0, 255, 65, 0.9), 0 0 40px rgba(0, 255, 65, 0.5), 0 0 60px rgba(0, 255, 65, 0.2), inset 0 0 15px rgba(0, 255, 65, 0.3); }
-      60% { box-shadow: 0 0 3px rgba(0, 255, 65, 0.3), 0 0 10px rgba(0, 255, 65, 0.15), inset 0 0 3px rgba(0, 255, 65, 0.05); }
-      75% { box-shadow: 0 0 10px rgba(0, 255, 65, 0.8), 0 0 30px rgba(0, 255, 65, 0.4), inset 0 0 10px rgba(0, 255, 65, 0.25); }
-      90% { box-shadow: 0 0 3px rgba(0, 255, 65, 0.3), 0 0 10px rgba(0, 255, 65, 0.15), inset 0 0 3px rgba(0, 255, 65, 0.05); }
-      100% { box-shadow: 0 0 8px rgba(0, 255, 65, 0.6), 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 8px rgba(0, 255, 65, 0.15); }
+      0% { box-shadow: 0 0 6px rgba(0, 255, 65, 0.4), 0 0 12px rgba(0, 255, 65, 0.15), inset 0 0 4px rgba(0, 255, 65, 0.08); }
+      30% { box-shadow: 0 0 16px rgba(0, 255, 65, 0.75), 0 0 40px rgba(0, 255, 65, 0.4), 0 0 60px rgba(0, 255, 65, 0.15), inset 0 0 10px rgba(0, 255, 65, 0.2); }
+      60% { box-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 25px rgba(0, 255, 65, 0.25), inset 0 0 6px rgba(0, 255, 65, 0.12); }
+      100% { box-shadow: 0 0 6px rgba(0, 255, 65, 0.4), 0 0 12px rgba(0, 255, 65, 0.15), inset 0 0 4px rgba(0, 255, 65, 0.08); }
     }
-    /* Мерцание текста как старый терминал */
+    /* Мерцание текста для элиты (оставляем статичное) */
     @keyframes hackerFlicker {
-      0% { opacity: 1; text-shadow: 0 0 4px rgba(0, 255, 65, 0.6), 0 0 12px rgba(0, 255, 65, 0.3); }
-      10% { opacity: 0.85; text-shadow: 0 0 2px rgba(0, 255, 65, 0.3), 0 0 6px rgba(0, 255, 65, 0.1); }
-      12% { opacity: 1; text-shadow: 0 0 4px rgba(0, 255, 65, 0.6), 0 0 12px rgba(0, 255, 65, 0.3); }
-      25% { opacity: 0.9; text-shadow: 0 0 6px rgba(0, 255, 65, 0.7), 0 0 18px rgba(0, 255, 65, 0.4); }
-      27% { opacity: 1; text-shadow: 0 0 4px rgba(0, 255, 65, 0.6), 0 0 12px rgba(0, 255, 65, 0.3); }
-      50% { opacity: 0.8; text-shadow: 0 0 2px rgba(0, 255, 65, 0.2), 0 0 4px rgba(0, 255, 65, 0.1); }
-      52% { opacity: 1; text-shadow: 0 0 4px rgba(0, 255, 65, 0.6), 0 0 12px rgba(0, 255, 65, 0.3); }
-      70% { opacity: 0.95; text-shadow: 0 0 8px rgba(0, 255, 65, 0.8), 0 0 20px rgba(0, 255, 65, 0.5); }
-      72% { opacity: 1; text-shadow: 0 0 4px rgba(0, 255, 65, 0.6), 0 0 12px rgba(0, 255, 65, 0.3); }
-      85% { opacity: 0.85; text-shadow: 0 0 2px rgba(0, 255, 65, 0.3), 0 0 6px rgba(0, 255, 65, 0.1); }
-      87% { opacity: 1; text-shadow: 0 0 4px rgba(0, 255, 65, 0.6), 0 0 12px rgba(0, 255, 65, 0.3); }
-      100% { opacity: 1; text-shadow: 0 0 4px rgba(0, 255, 65, 0.6), 0 0 12px rgba(0, 255, 65, 0.3); }
-    }
-    /* Пиксельное сканирование (горизонтальная полоска) */
-    @keyframes hackerScan {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 0% 100%; }
+      0%, 100% { opacity: 1; text-shadow: 0 0 4px rgba(0, 255, 65, 0.6), 0 0 12px rgba(0, 255, 65, 0.3); }
     }
     
     /* Бета-шапка профиля */
@@ -1886,12 +1888,22 @@
             <div id="profileFriendsList" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 150px; overflow-y: auto; margin-bottom: 0.75rem;">
               <div style="text-align: center; font-size: 0.8rem; color: var(--text-secondary); opacity: 0.6; padding: 0.5rem;">Загрузка...</div>
             </div>
+            <!-- Кнопки-переключатели входящих/исходящих заявок -->
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <button id="profileRequestsToggleIncoming" class="profile-requests-toggle active" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.4rem 0.6rem; border-radius: 0.5rem; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-primary); font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                <i class="fas fa-inbox" style="color: #3b82f6;"></i> Входящие
+                <span id="profileIncomingBadge" style="display: none; background: #ef4444; color: white; font-size: 0.6rem; font-weight: 700; min-width: 1rem; height: 1rem; border-radius: 999px; align-items: center; justify-content: center; padding: 0 0.2rem;">0</span>
+              </button>
+              <button id="profileRequestsToggleOutgoing" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.4rem 0.6rem; border-radius: 0.5rem; border: 1px solid var(--glass-border); background: transparent; color: var(--text-secondary); font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                <i class="fas fa-paper-plane" style="color: #f59e0b;"></i> Исходящие
+                <span id="profileOutgoingBadge" style="display: none; background: #f59e0b; color: white; font-size: 0.6rem; font-weight: 700; min-width: 1rem; height: 1rem; border-radius: 999px; align-items: center; justify-content: center; padding: 0 0.2rem;">0</span>
+              </button>
+            </div>
             <div id="profileFriendRequests" style="display: none;">
-              <h5 style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem;">
-                <i class="fas fa-user-clock"></i> Заявки в друзья
-                <span id="profileFriendRequestsBadge" style="display: none; background: #ef4444; color: white; font-size: 0.65rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 999px; vertical-align: middle; margin-left: 0.3rem;">0</span>
-              </h5>
               <div id="profileFriendRequestsList" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 150px; overflow-y: auto;"></div>
+            </div>
+            <div id="profileOutgoingRequests" style="display: none;">
+              <div id="profileOutgoingRequestsList" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 150px; overflow-y: auto;"></div>
             </div>
           </div>
 
@@ -3481,13 +3493,13 @@
     function getBadgeHtml(badgeType) {
         switch (badgeType) {
             case 'official':
-                return '<span style="display: inline-flex; align-items: center; gap: 0.2rem; background: linear-gradient(135deg, #1da1f2, #0d8bd9); color: white; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px; vertical-align: middle;"><i class="fas fa-check-circle" style="font-size: 0.7rem;"></i> Официально</span>';
+                return '<span style="display: inline-flex; align-items: center; gap: 0.2rem; background: linear-gradient(135deg, #1da1f2, #0d8bd9); color: white; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px; vertical-align: middle; box-shadow: 0 0 6px rgba(29, 161, 242, 0.4); animation: badgeGlowBlue 4s ease-in-out infinite;"><i class="fas fa-check-circle" style="font-size: 0.7rem;"></i> Официально</span>';
             case 'donater':
-                return '<span style="display: inline-flex; align-items: center; gap: 0.2rem; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px; vertical-align: middle;"><i class="fas fa-dollar-sign" style="font-size: 0.7rem;"></i> Донатер</span>';
+                return '<span style="display: inline-flex; align-items: center; gap: 0.2rem; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px; vertical-align: middle; box-shadow: 0 0 6px rgba(245, 158, 11, 0.4); animation: badgeGlowYellow 4s ease-in-out infinite;"><i class="fas fa-dollar-sign" style="font-size: 0.7rem;"></i> Донатер</span>';
             case 'beta_tester':
-                return '<span style="display: inline-flex; align-items: center; gap: 0.2rem; background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px; vertical-align: middle;"><i class="fas fa-flask" style="font-size: 0.7rem;"></i> Бета-тестер</span>';
+                return '<span style="display: inline-flex; align-items: center; gap: 0.2rem; background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px; vertical-align: middle; box-shadow: 0 0 6px rgba(139, 92, 246, 0.4); animation: badgeGlowPurple 4s ease-in-out infinite;"><i class="fas fa-flask" style="font-size: 0.7rem;"></i> Бета-тестер</span>';
             case 'beta_tester_elite':
-                return '<span style="display: inline-flex; align-items: center; gap: 0.3rem; background: #0a0a0a; color: #00ff41; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.6rem; border-radius: 4px; vertical-align: middle; border: 1px solid #00ff41; font-family: \'Courier New\', monospace; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 0 8px rgba(0, 255, 65, 0.6), 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 8px rgba(0, 255, 65, 0.15); animation: hackerGlow 1.5s ease-in-out infinite; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 65, 0.03) 2px, rgba(0, 255, 65, 0.03) 4px);"><i class="fas fa-shield-hacked" style="font-size: 0.7rem; filter: drop-shadow(0 0 4px #00ff41); animation: hackerFlicker 2.5s ease-in-out infinite;"></i> <span style="animation: hackerFlicker 2.5s ease-in-out infinite;">Элита</span></span>';
+                return '<span style="display: inline-flex; align-items: center; gap: 0.3rem; background: #0a0a0a; color: #00ff41; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.6rem; border-radius: 4px; vertical-align: middle; border: 1px solid #00ff41; font-family: \'Courier New\', monospace; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 0 6px rgba(0, 255, 65, 0.4); animation: hackerGlow 4s ease-in-out infinite; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 65, 0.03) 2px, rgba(0, 255, 65, 0.03) 4px);"><i class="fas fa-shield-hacked" style="font-size: 0.7rem; filter: drop-shadow(0 0 4px #00ff41);"></i> Элита</span>';
             default:
                 return '';
         }
@@ -3503,7 +3515,7 @@
             case 'beta_tester':
                 return '<div style="margin-top: 0.5rem; padding: 0.6rem 0.75rem; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: 0.75rem; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;"><i class="fas fa-flask" style="color: #8b5cf6; margin-right: 0.3rem;"></i> <strong style="color: var(--text-primary);">Бета-тестер</strong> — этот пользователь помогает тестировать новые функции сайта. Спасибо за помощь в улучшении проекта! 🧪</div>';
             case 'beta_tester_elite':
-                return '<div style="margin-top: 0.5rem; padding: 0.6rem 0.75rem; background: rgba(0, 255, 65, 0.08); border: 1px solid rgba(0, 255, 65, 0.3); border-radius: 0.5rem; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; box-shadow: 0 0 12px rgba(0, 255, 65, 0.15);"><i class="fas fa-shield-hacked" style="color: #00ff41; margin-right: 0.3rem; filter: drop-shadow(0 0 4px #00ff41); animation: hackerFlicker 2.5s ease-in-out infinite;"></i> <strong style="color: #00ff41; text-shadow: 0 0 8px rgba(0, 255, 65, 0.5); animation: hackerFlicker 2.5s ease-in-out infinite;">Бета-тестер Элита</strong> — высший уровень бета-тестирования! Этот пользователь внёс наибольший вклад в развитие проекта, помогал находить критические ошибки и участвовал в закрытых тестах. Настоящий хакер! 🖥️🔥</div>';
+                return '<div style="margin-top: 0.5rem; padding: 0.6rem 0.75rem; background: rgba(0, 255, 65, 0.08); border: 1px solid rgba(0, 255, 65, 0.3); border-radius: 0.5rem; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; box-shadow: 0 0 12px rgba(0, 255, 65, 0.15);"><i class="fas fa-shield-hacked" style="color: #00ff41; margin-right: 0.3rem; filter: drop-shadow(0 0 4px #00ff41);"></i> <strong style="color: #00ff41; text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);">Бета-тестер Элита</strong> — высший уровень бета-тестирования! Этот пользователь внёс наибольший вклад в развитие проекта, помогал находить критические ошибки и участвовал в закрытых тестах. Настоящий хакер! 🖥️🔥</div>';
             default:
                 return '';
         }
@@ -4015,6 +4027,7 @@
     // === СИСТЕМА ДРУЗЕЙ ===
     let friendsListener = null;
     let friendRequestsListener = null;
+    let outgoingRequestsListener = null;
 
     function startFriendsListeners() {
         if (!firebaseInitialized || !currentUser || !currentUser.nickname) return;
@@ -4034,6 +4047,19 @@
         const requestsRef = db.ref('friend_requests').orderByChild('to').equalTo(nickname);
         friendRequestsListener = requestsRef.on('value', (snapshot) => {
             renderFriendRequests(snapshot);
+        });
+
+        // Слушаем исходящие заявки
+        if (outgoingRequestsListener) outgoingRequestsListener();
+        const outgoingRef = db.ref('friend_requests').orderByChild('from').equalTo(nickname);
+        outgoingRequestsListener = outgoingRef.on('value', (snapshot) => {
+            renderOutgoingRequests(snapshot);
+        });
+
+        // Отдельный слушатель для обновления бейджей (все заявки)
+        if (window._friendBadgeListener) window._friendBadgeListener();
+        const allRequestsRef = db.ref('friend_requests');
+        window._friendBadgeListener = allRequestsRef.on('value', (snapshot) => {
             updateFriendRequestBadge(snapshot);
         });
     }
@@ -4046,6 +4072,14 @@
         if (friendRequestsListener && firebaseInitialized) {
             firebase.database().ref('friend_requests').off('value', friendRequestsListener);
             friendRequestsListener = null;
+        }
+        if (outgoingRequestsListener && firebaseInitialized) {
+            firebase.database().ref('friend_requests').off('value', outgoingRequestsListener);
+            outgoingRequestsListener = null;
+        }
+        if (window._friendBadgeListener && firebaseInitialized) {
+            firebase.database().ref('friend_requests').off('value', window._friendBadgeListener);
+            window._friendBadgeListener = null;
         }
     }
 
@@ -4112,7 +4146,9 @@
             return;
         }
 
-        section.style.display = 'block';
+        // Показываем секцию только если активна вкладка "Входящие"
+        const isIncomingActive = document.getElementById('profileRequestsToggleIncoming')?.classList.contains('active');
+        section.style.display = isIncomingActive ? 'block' : 'none';
         let html = '';
         requestKeys.forEach(key => {
             const req = pendingRequests[key];
@@ -4140,31 +4176,115 @@
 
     function updateFriendRequestBadge(snapshot) {
         const badge = document.getElementById('profileNavBadge');
-        const requestsBadge = document.getElementById('profileFriendRequestsBadge');
-        if (!badge || !requestsBadge) return;
+        const incomingBadge = document.getElementById('profileIncomingBadge');
+        const outgoingBadge = document.getElementById('profileOutgoingBadge');
+        if (!badge) return;
 
         const requests = snapshot.val();
         if (!requests) {
             badge.style.display = 'none';
-            requestsBadge.style.display = 'none';
+            if (incomingBadge) incomingBadge.style.display = 'none';
+            if (outgoingBadge) outgoingBadge.style.display = 'none';
             return;
         }
 
-        let count = 0;
+        let incomingCount = 0;
+        let outgoingCount = 0;
         Object.keys(requests).forEach(key => {
-            if (requests[key].status === 'pending' && requests[key].to === currentUser.nickname) {
-                count++;
+            const req = requests[key];
+            if (req.status === 'pending') {
+                if (req.to === currentUser.nickname) incomingCount++;
+                if (req.from === currentUser.nickname) outgoingCount++;
             }
         });
 
-        if (count > 0) {
+        // Бейдж на кнопке "Профиль" (только входящие заявки)
+        const totalPending = incomingCount;
+        if (totalPending > 0) {
             badge.style.display = 'flex';
-            badge.textContent = count > 99 ? '99+' : count;
-            requestsBadge.style.display = 'inline';
-            requestsBadge.textContent = count;
+            badge.textContent = totalPending > 99 ? '99+' : totalPending;
         } else {
             badge.style.display = 'none';
-            requestsBadge.style.display = 'none';
+        }
+
+        // Бейдж "Входящие" в профиле
+        if (incomingBadge) {
+            if (incomingCount > 0) {
+                incomingBadge.style.display = 'flex';
+                incomingBadge.textContent = incomingCount;
+            } else {
+                incomingBadge.style.display = 'none';
+            }
+        }
+
+        // Бейдж "Исходящие" в профиле
+        if (outgoingBadge) {
+            if (outgoingCount > 0) {
+                outgoingBadge.style.display = 'flex';
+                outgoingBadge.textContent = outgoingCount;
+            } else {
+                outgoingBadge.style.display = 'none';
+            }
+        }
+    }
+
+    function renderOutgoingRequests(snapshot) {
+        const container = document.getElementById('profileOutgoingRequestsList');
+        const section = document.getElementById('profileOutgoingRequests');
+        if (!container || !section) return;
+
+        const requests = snapshot.val();
+        if (!requests) {
+            section.style.display = 'none';
+            return;
+        }
+
+        const pendingOutgoing = {};
+        Object.keys(requests).forEach(key => {
+            const req = requests[key];
+            if (req.status === 'pending' && req.from === currentUser.nickname) {
+                pendingOutgoing[key] = req;
+            }
+        });
+
+        const requestKeys = Object.keys(pendingOutgoing);
+        if (requestKeys.length === 0) {
+            section.style.display = 'none';
+            return;
+        }
+
+        // Показываем секцию только если активна вкладка "Исходящие"
+        const isOutgoingActive = document.getElementById('profileRequestsToggleOutgoing')?.classList.contains('active');
+        section.style.display = isOutgoingActive ? 'block' : 'none';
+
+        let html = '';
+        requestKeys.forEach(key => {
+            const req = pendingOutgoing[key];
+            const timestamp = req.timestamp ? new Date(req.timestamp).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' }) : '';
+            html += '<div style="display: flex; align-items: center; justify-content: space-between; padding: 0.4rem 0.6rem; border-radius: 0.5rem; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); font-size: 0.8rem;">' +
+                '<span><i class="fas fa-paper-plane" style="color: #f59e0b; margin-right: 0.4rem;"></i>' + escapeHtml(req.to) + (timestamp ? ' <span style="color: var(--text-secondary); font-size: 0.7rem;">(' + timestamp + ')</span>' : '') + '</span>' +
+                '<button class="outgoing-cancel-btn" data-request-key="' + escapeHtml(key) + '" data-to="' + escapeHtml(req.to) + '" style="background: #6b7280; border: none; color: white; cursor: pointer; font-size: 0.7rem; padding: 0.25rem 0.5rem; border-radius: 0.4rem;" title="Отменить заявку"><i class="fas fa-times"></i></button>' +
+                '</div>';
+        });
+        container.innerHTML = html;
+
+        // Обработчики отмены исходящих заявок
+        container.querySelectorAll('.outgoing-cancel-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                cancelOutgoingRequest(this.dataset.requestKey, this.dataset.to);
+            });
+        });
+    }
+
+    async function cancelOutgoingRequest(requestKey, toNickname) {
+        if (!firebaseInitialized || !currentUser) return;
+        try {
+            const db = firebase.database();
+            await db.ref('friend_requests/' + requestKey + '/status').set('cancelled');
+            showNotification('Заявка пользователю ' + toNickname + ' отменена', { type: 'info', duration: 2500 });
+        } catch(e) {
+            console.error('[Friends] Ошибка отмены заявки:', e);
+            showNotification('Ошибка отмены заявки', { type: 'warning' });
         }
     }
 
@@ -4273,9 +4393,10 @@
                     const badgeEl = document.getElementById('friendProfileBadge');
                     if (badgeType) {
                         const badgeMap = {
-                            'official': '<span style="display: inline-flex; align-items: center; gap: 0.3rem; background: linear-gradient(135deg, #1da1f2, #0d8bd9); color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px;"><i class="fas fa-check-circle"></i> Официально</span>',
-                            'donater': '<span style="display: inline-flex; align-items: center; gap: 0.3rem; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px;"><i class="fas fa-dollar-sign"></i> Донатер</span>',
-                            'beta_tester': '<span style="display: inline-flex; align-items: center; gap: 0.3rem; background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px;"><i class="fas fa-flask"></i> Бета-тестер</span>'
+                            'official': '<span style="display: inline-flex; align-items: center; gap: 0.3rem; background: linear-gradient(135deg, #1da1f2, #0d8bd9); color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; box-shadow: 0 0 6px rgba(29, 161, 242, 0.4); animation: badgeGlowBlue 4s ease-in-out infinite;"><i class="fas fa-check-circle"></i> Официально</span>',
+                            'donater': '<span style="display: inline-flex; align-items: center; gap: 0.3rem; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; box-shadow: 0 0 6px rgba(245, 158, 11, 0.4); animation: badgeGlowYellow 4s ease-in-out infinite;"><i class="fas fa-dollar-sign"></i> Донатер</span>',
+                            'beta_tester': '<span style="display: inline-flex; align-items: center; gap: 0.3rem; background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; box-shadow: 0 0 6px rgba(139, 92, 246, 0.4); animation: badgeGlowPurple 4s ease-in-out infinite;"><i class="fas fa-flask"></i> Бета-тестер</span>',
+                            'beta_tester_elite': '<span style="display: inline-flex; align-items: center; gap: 0.3rem; background: #0a0a0a; color: #00ff41; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid #00ff41; font-family: \'Courier New\', monospace; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 0 6px rgba(0, 255, 65, 0.4); animation: hackerGlow 4s ease-in-out infinite; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 65, 0.03) 2px, rgba(0, 255, 65, 0.03) 4px);"><i class="fas fa-shield-hacked" style="filter: drop-shadow(0 0 4px #00ff41);"></i> Элита</span>'
                         };
                         badgeEl.innerHTML = badgeMap[badgeType] || '';
                     } else {
@@ -5714,6 +5835,45 @@
             const mobileMenuProfileBtn = document.getElementById('mobileMenuProfileBtn');
             if (profileNavBtn) profileNavBtn.addEventListener('click', openProfileModal);
             if (mobileMenuProfileBtn) mobileMenuProfileBtn.addEventListener('click', openProfileModal);
+
+            // Кнопки-переключатели входящих/исходящих заявок в профиле
+            const toggleIncoming = document.getElementById('profileRequestsToggleIncoming');
+            const toggleOutgoing = document.getElementById('profileRequestsToggleOutgoing');
+            const incomingSection = document.getElementById('profileFriendRequests');
+            const outgoingSection = document.getElementById('profileOutgoingRequests');
+            
+            function activateRequestsTab(tab) {
+                if (tab === 'incoming') {
+                    toggleIncoming.classList.add('active');
+                    toggleIncoming.style.background = 'var(--glass-bg)';
+                    toggleIncoming.style.color = 'var(--text-primary)';
+                    toggleOutgoing.classList.remove('active');
+                    toggleOutgoing.style.background = 'transparent';
+                    toggleOutgoing.style.color = 'var(--text-secondary)';
+                    if (incomingSection) incomingSection.style.display = 'block';
+                    if (outgoingSection) outgoingSection.style.display = 'none';
+                } else {
+                    toggleOutgoing.classList.add('active');
+                    toggleOutgoing.style.background = 'var(--glass-bg)';
+                    toggleOutgoing.style.color = 'var(--text-primary)';
+                    toggleIncoming.classList.remove('active');
+                    toggleIncoming.style.background = 'transparent';
+                    toggleIncoming.style.color = 'var(--text-secondary)';
+                    if (outgoingSection) outgoingSection.style.display = 'block';
+                    if (incomingSection) incomingSection.style.display = 'none';
+                }
+            }
+            
+            if (toggleIncoming) {
+                toggleIncoming.addEventListener('click', function() {
+                    activateRequestsTab('incoming');
+                });
+            }
+            if (toggleOutgoing) {
+                toggleOutgoing.addEventListener('click', function() {
+                    activateRequestsTab('outgoing');
+                });
+            }
             
             // Вкладки профиля
             const tabLogin = document.getElementById('profileTabLogin');
