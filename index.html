@@ -2755,6 +2755,14 @@
         notification._hideTimer = window.setTimeout(() => notification.classList.remove('show'), duration);
     }
     
+    function hideNotification() {
+        const notification = document.getElementById('notification');
+        if (notification) {
+            notification.classList.remove('show');
+            window.clearTimeout(notification._hideTimer);
+        }
+    }
+    
     function openSettingsModal() {
         const modal = document.getElementById('settingsModal');
         modal.classList.add('show');
