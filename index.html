@@ -5764,9 +5764,9 @@
         
         // Кешированные видео — показываем сразу
         const hasCachedVideos = loadCachedVideos();
-        if (currentVideoSystem && hasCachedVideos) {
-            currentVideoSystem.refresh(videoData);
-        }
+        
+        // Инициализация видео системы (создаём сразу, чтобы кешированные видео отобразились)
+        currentVideoSystem = new VideoSystem();
         
         loadCachedStats();
         
@@ -5798,8 +5798,7 @@
             
             setInterval(updateVideosFromYouTube, 3600000);
             
-            // Инициализация видео и Twitch систем
-            currentVideoSystem = new VideoSystem();
+            // Инициализация Twitch систем
             initTwitchClipsSystem();
             
             // Инициализация профиля
