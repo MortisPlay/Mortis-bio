@@ -1406,6 +1406,11 @@
 
           <!-- Блок чата (виден только авторизованным) -->
           <div id="chatArea" class="chat-container">
+            <!-- Лоадер чата -->
+            <div id="chatLoader" class="chat-loader" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1rem; gap: 1rem;">
+              <div class="spinner" style="width: 2.5rem; height: 2.5rem; border: 3px solid var(--glass-border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+              <div style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">Загрузка сообщений...</div>
+            </div>
             <div class="chat-messages" id="chatMessages">
               <div class="chat-welcome" id="chatWelcome">
                 <i class="fas fa-comments"></i>
@@ -1508,6 +1513,11 @@
           </style>
         </div>
 
+        <!-- Лоадер галереи -->
+        <div id="galleryLoader" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 1rem; gap: 1rem;">
+          <div class="spinner" style="width: 2.5rem; height: 2.5rem; border: 3px solid var(--glass-border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+          <div style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">Загрузка мемов...</div>
+        </div>
         <!-- Сетка галереи -->
         <div id="galleryGrid" class="gallery-grid animate-fadeInUp">
           <!-- Мемы будут загружаться сюда -->
@@ -2447,6 +2457,10 @@
       const container = document.getElementById('chatMessages');
       const welcome = document.getElementById('chatWelcome');
       const totalEl = document.getElementById('totalMessages');
+      const chatLoader = document.getElementById('chatLoader');
+
+      // Скрываем лоадер чата при первом рендере
+      if (chatLoader) chatLoader.style.display = 'none';
 
       if (chatMessages.length === 0) {
         if (welcome) welcome.style.display = 'block';
@@ -2458,7 +2472,7 @@
       if (totalEl) totalEl.textContent = chatMessages.length;
 
       container.innerHTML = '';
-      const messagesToShow = chatMessages.slice(-50);
+      const messagesToShow = chatMessages.slice(-500);
       messagesToShow.forEach(msg => {
         const div = document.createElement('div');
         div.className = `chat-message ${msg.username === currentUsername ? 'own' : ''}`;
@@ -2575,7 +2589,7 @@
       
       // Слушаем новые сообщения в реальном времени
       // Оптимизация: используем только один listener 'value' вместо двух (value + child_added)
-      messagesRef.orderByChild('timestamp').limitToLast(50).on('value', (snapshot) => {
+      messagesRef.orderByChild('timestamp').limitToLast(500).on('value', (snapshot) => {
         chatMessages = [];
         snapshot.forEach((child) => {
           const msg = child.val();
@@ -3054,6 +3068,10 @@
     function renderGallery() {
       const grid = document.getElementById('galleryGrid');
       const noMemes = document.getElementById('noMemesMessage');
+      const galleryLoader = document.getElementById('galleryLoader');
+
+      // Скрываем лоадер галереи при первом рендере
+      if (galleryLoader) galleryLoader.style.display = 'none';
 
       if (galleryMemes.length === 0) {
         grid.innerHTML = '';
@@ -3141,7 +3159,7 @@
       const db = firebase.database();
       const galleryRef = db.ref('gallery_memes');
       
-      galleryRef.orderByChild('timestamp').limitToLast(50).on('value', (snapshot) => {
+      galleryRef.orderByChild('timestamp').limitToLast(500).on('value', (snapshot) => {
         galleryMemes = [];
         snapshot.forEach((child) => {
           const meme = child.val();
