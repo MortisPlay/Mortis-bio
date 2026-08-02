@@ -476,8 +476,7 @@
     }
 
     #themeToggle,
-    #settingsToggle,
-    .support-chat-toggle-btn {
+    #settingsToggle {
       width: 44px; height: 44px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -494,28 +493,14 @@
       z-index: 1;
     }
     #themeToggle:hover,
-    #settingsToggle:hover,
-    .support-chat-toggle-btn:hover {
+    #settingsToggle:hover {
       transform: scale(1.06) rotate(6deg);
       box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45);
       filter: brightness(1.08);
     }
     body.light-theme #themeToggle,
-    body.light-theme #settingsToggle,
-    body.light-theme .support-chat-toggle-btn {
+    body.light-theme #settingsToggle {
       background: linear-gradient(135deg, #4f46e5, #0ea5e9);
-    }
-    
-    /* Специальный стиль для кнопки Telegram — фирменный синий */
-    .support-chat-toggle-btn {
-      background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%) !important;
-      box-shadow: 0 4px 15px rgba(42, 171, 238, 0.4) !important;
-    }
-    .support-chat-toggle-btn:hover {
-      box-shadow: 0 8px 25px rgba(42, 171, 238, 0.55) !important;
-    }
-    body.light-theme .support-chat-toggle-btn {
-      background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%) !important;
     }
 
     .mobile-menu-backdrop {
@@ -1018,163 +1003,6 @@
       animation-play-state: paused;
     }
     
-    /* Чат поддержки Telegram */
-    .support-chat-modal .modal-content {
-      max-width: 420px;
-      max-height: 80vh;
-      padding: 0;
-      overflow: hidden;
-      border-radius: 1.5rem;
-    }
-    .support-chat-header {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .support-chat-header h3 {
-      color: white;
-      font-size: 1.1rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .support-chat-header h3 i {
-      font-size: 1.3rem;
-    }
-    .support-chat-close {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .support-chat-close:hover {
-      background: rgba(255,255,255,0.25);
-      transform: rotate(90deg);
-    }
-    .support-chat-body {
-      padding: 1.25rem 1.5rem;
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-    }
-    .support-chat-body p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-    .support-chat-body .chat-iframe-container {
-      border-radius: 1rem;
-      overflow: hidden;
-      border: 1px solid var(--glass-border);
-      background: var(--bg-secondary);
-      min-height: 340px;
-      max-height: 420px;
-      position: relative;
-    }
-    .support-chat-body .chat-iframe-container iframe {
-      width: 100%;
-      height: 100%;
-      min-height: 340px;
-      max-height: 420px;
-      border: none;
-    }
-    .support-chat-body .chat-iframe-container .iframe-fallback {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-secondary);
-      padding: 2rem;
-      text-align: center;
-      gap: 1rem;
-    }
-    .support-chat-body .chat-iframe-container .iframe-fallback i {
-      font-size: 3rem;
-      color: var(--primary);
-      opacity: 0.6;
-    }
-    .support-chat-body .chat-iframe-container .iframe-fallback p {
-      font-size: 0.85rem;
-      margin-bottom: 0;
-    }
-    .support-chat-footer {
-      padding: 1rem 1.5rem 1.25rem;
-      background: var(--card-bg);
-      border-top: 1px solid var(--glass-border);
-      backdrop-filter: blur(12px);
-    }
-    .support-chat-footer .btn-telegram {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      width: 100%;
-      padding: 0.85rem 1.5rem;
-      border-radius: 9999px;
-      background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
-      color: white;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      box-shadow: 0 4px 20px rgba(42, 171, 238, 0.35);
-    }
-    .support-chat-footer .btn-telegram:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(42, 171, 238, 0.5);
-      filter: brightness(1.08);
-    }
-    .support-chat-footer .btn-telegram i {
-      font-size: 1.2rem;
-    }
-    .support-chat-footer .hint-text {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      margin-top: 0.6rem;
-      opacity: 0.7;
-    }
-    @media (max-width: 480px) {
-      .support-chat-modal .modal-content {
-        max-width: 96%;
-        max-height: 90vh;
-        border-radius: 1.25rem;
-      }
-      .support-chat-header {
-        padding: 1rem 1.25rem;
-      }
-      .support-chat-body {
-        padding: 1rem 1.25rem;
-      }
-      .support-chat-body .chat-iframe-container {
-        min-height: 280px;
-        max-height: 360px;
-      }
-      .support-chat-body .chat-iframe-container iframe {
-        min-height: 280px;
-        max-height: 360px;
-      }
-      .support-chat-footer {
-        padding: 0.85rem 1.25rem 1rem;
-      }
-    }
   </style>
 </head>
 <body>
@@ -1201,9 +1029,6 @@
         <a href="news-archive.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-lg transition-colors text-lg font-medium" style="background: var(--glass-bg);"><i class="fas fa-box-archive w-5"></i><span>Архив Новостей</span></a>
         <a href="#twitch-clips" class="flex items-center gap-3 p-3 rounded-lg transition-colors text-lg font-medium" style="background: var(--glass-bg);"><i class="fab fa-twitch w-5"></i><span>Twitch</span></a>
         <a href="#contact" class="flex items-center gap-3 p-3 rounded-lg transition-colors text-lg font-medium" style="background: var(--glass-bg);"><i class="fas fa-envelope w-5"></i><span>Сотрудничество</span></a>
-        <button id="mobileSupportChatToggle" class="flex items-center gap-3 p-3 rounded-lg transition-colors text-lg font-medium w-full text-left" style="background: linear-gradient(135deg, rgba(42, 171, 238, 0.15), rgba(34, 158, 217, 0.1)); border: 1px solid rgba(42, 171, 238, 0.2); color: var(--text-primary);">
-          <i class="fab fa-telegram w-5" style="color: #2AABEE;"></i><span>Чат поддержки</span>
-        </button>
       </nav>
       <div class="pt-8 border-t" style="border-color: var(--glass-border);">
         <div class="text-sm mb-4 font-medium" style="color: var(--text-secondary);">Быстрые ссылки:</div>
@@ -1297,61 +1122,8 @@
           <span>Показывать уведомление об обновлениях</span>
           <input id="updateNoticeToggle" type="checkbox" class="w-5 h-5 accent-indigo-500" checked>
         </label>
-        <div class="rounded-xl p-3 border" style="border-color: var(--glass-border); background: rgba(255,255,255,0.08);">
-          <label class="flex items-center justify-between">
-            <div>
-              <div class="font-medium">Персональные уведомления</div>
-              <div class="text-sm mt-1" style="color: var(--text-secondary);">Более точные напоминания и подборки.</div>
-            </div>
-            <input id="personalNotificationsToggle" type="checkbox" class="w-5 h-5 accent-indigo-500" checked>
-          </label>
-          <div class="mt-3 space-y-2 pl-1">
-            <label class="flex items-center justify-between rounded-lg px-3 py-2 text-sm" style="background: rgba(255,255,255,0.05);">
-              <span>Новое видео на канале</span>
-              <input id="newVideoNotificationsToggle" type="checkbox" class="w-4 h-4 accent-indigo-500" checked>
-            </label>
-            <label class="flex items-center justify-between rounded-lg px-3 py-2 text-sm" style="background: rgba(255,255,255,0.05);">
-              <span>Новое обновление на сайте</span>
-              <input id="siteUpdateNotificationsToggle" type="checkbox" class="w-4 h-4 accent-indigo-500" checked>
-            </label>
-          </div>
-        </div>
       </div>
       <button onclick="closeSettingsModal()" class="btn-primary mt-6 w-full">Сохранить</button>
-    </div>
-  </div>
-
-  <!-- Модальное окно чата поддержки Telegram -->
-  <div id="supportChatModal" class="modal-backdrop support-chat-modal" onclick="closeSupportChatModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <div class="support-chat-header">
-        <h3><i class="fab fa-telegram"></i> Чат поддержки</h3>
-        <button class="support-chat-close" onclick="closeSupportChatModal()" aria-label="Закрыть чат">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="support-chat-body">
-        <p>Задай вопрос нашему агенту поддержки. Мы стараемся отвечать максимально быстро!</p>
-        <div class="chat-iframe-container" id="chatIframeContainer">
-          <iframe id="telegramChatIframe"
-            src="https://t.me/agentplay_bot"
-            title="Чат поддержки Telegram"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-          <div class="iframe-fallback" id="chatFallback">
-            <i class="fab fa-telegram"></i>
-            <p>Не удалось загрузить чат напрямую. Нажмите кнопку ниже, чтобы открыть диалог с ботом в Telegram.</p>
-          </div>
-        </div>
-      </div>
-      <div class="support-chat-footer">
-        <a href="https://t.me/agentplay_bot" target="_blank" rel="noopener noreferrer" class="btn-telegram" onclick="trackSupportChatOpen()">
-          <i class="fab fa-telegram"></i> Открыть в Telegram
-        </a>
-        <p class="hint-text">Нажмите «Start» / «Запустить» в боте, чтобы начать диалог</p>
-      </div>
     </div>
   </div>
 
@@ -1372,9 +1144,6 @@
           <a href="#contact" class="nav-link">Сотрудничество</a>
         </div>
         <div class="flex items-center gap-3">
-          <button id="supportChatToggle" class="support-chat-toggle-btn" aria-label="Чат поддержки" title="Чат поддержки">
-            <i class="fab fa-telegram"></i>
-          </button>
           <button id="settingsToggle" aria-label="Настройки" title="Настройки"><i class="fas fa-gear"></i></button>
           <button id="themeToggle" aria-label="Сменить тему" title="Сменить тему"><i class="fas fa-sun"></i></button>
           <button id="menuToggle" class="md:hidden w-10 h-10 rounded-lg flex items-center justify-center transition-colors" style="background: var(--glass-bg);"><i class="fas fa-bars text-xl"></i></button>
@@ -1582,10 +1351,6 @@
       <i class="fas fa-gear"></i>
       <span>Настр.</span>
     </button>
-    <button id="mobileBottomSupportChat" title="Чат поддержки" aria-label="Чат поддержки">
-      <i class="fab fa-telegram" style="color: #2AABEE;"></i>
-      <span>Поддержка</span>
-    </button>
   </nav>
 
   <script>
@@ -1674,9 +1439,8 @@
                 };
             });
             
-            const settings = getSiteSettings();
             const hasNewVideos = youtubeVideos.length > 0 && (!videoData.length || youtubeVideos.some(video => !videoData.some(existing => existing.id === video.id)));
-            if (hasNewVideos && settings.personalNotifications !== false && settings.notifyNewVideos !== false) {
+            if (hasNewVideos) {
                 showNotification('Появилось новое видео на канале! 🎬', { type: 'success', duration: 5000, category: 'channel-video' });
             }
             showNotification(`Загружено ${youtubeVideos.length} видео с YouTube! 🎉`, { silent: true });
@@ -1762,10 +1526,6 @@
         if (silent) return false;
         if (force) return true;
         if (settings.notifications === false || document.body.classList.contains('notifications-off')) return false;
-        if (category === 'channel-video' && settings.personalNotifications === false) return false;
-        if (category === 'channel-video' && settings.notifyNewVideos === false) return false;
-        if (category === 'site-update' && settings.personalNotifications === false) return false;
-        if (category === 'site-update' && settings.notifySiteUpdates === false) return false;
         return true;
     }
 
@@ -1828,7 +1588,7 @@
     function getSiteSettings() {
         const saved = localStorage.getItem('site-settings');
         const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
-        let settings = { animations: true, notifications: true, glass: !isMobileViewport(), updateNotice: true, personalNotifications: true, notifyNewVideos: true, notifySiteUpdates: true };
+        let settings = { animations: true, notifications: true, glass: !isMobileViewport(), updateNotice: true };
         try {
             if (saved) settings = { ...settings, ...JSON.parse(saved) };
         } catch (e) {}
@@ -1841,22 +1601,15 @@
         document.body.classList.toggle('reduced-motion', settings.animations === false);
         document.body.classList.toggle('notifications-off', settings.notifications === false);
         document.body.classList.toggle('reduced-glass', settings.glass === false);
-        document.body.classList.toggle('personal-notifications-off', settings.personalNotifications === false);
 
         const animationsToggle = document.getElementById('animationsToggle');
         const notificationsToggle = document.getElementById('notificationsToggle');
         const glassToggle = document.getElementById('glassToggle');
         const updateNoticeToggle = document.getElementById('updateNoticeToggle');
-        const personalNotificationsToggle = document.getElementById('personalNotificationsToggle');
-        const newVideoNotificationsToggle = document.getElementById('newVideoNotificationsToggle');
-        const siteUpdateNotificationsToggle = document.getElementById('siteUpdateNotificationsToggle');
         if (animationsToggle) animationsToggle.checked = settings.animations !== false;
         if (notificationsToggle) notificationsToggle.checked = settings.notifications !== false;
         if (glassToggle) glassToggle.checked = settings.glass !== false;
         if (updateNoticeToggle) updateNoticeToggle.checked = settings.updateNotice !== false;
-        if (personalNotificationsToggle) personalNotificationsToggle.checked = settings.personalNotifications !== false;
-        if (newVideoNotificationsToggle) newVideoNotificationsToggle.checked = settings.notifyNewVideos !== false;
-        if (siteUpdateNotificationsToggle) siteUpdateNotificationsToggle.checked = settings.notifySiteUpdates !== false;
     }
 
     function initSettings() {
@@ -1866,9 +1619,6 @@
         const notificationsToggle = document.getElementById('notificationsToggle');
         const glassToggle = document.getElementById('glassToggle');
         const updateNoticeToggle = document.getElementById('updateNoticeToggle');
-        const personalNotificationsToggle = document.getElementById('personalNotificationsToggle');
-        const newVideoNotificationsToggle = document.getElementById('newVideoNotificationsToggle');
-        const siteUpdateNotificationsToggle = document.getElementById('siteUpdateNotificationsToggle');
         const saveButton = document.querySelector('#settingsModal .btn-primary');
 
         const handleSettingsClick = () => openSettingsModal();
@@ -1879,10 +1629,7 @@
                 animations: animationsToggle?.checked !== false,
                 notifications: notificationsToggle?.checked !== false,
                 glass: glassToggle?.checked !== false,
-                updateNotice: updateNoticeToggle?.checked !== false,
-                personalNotifications: personalNotificationsToggle?.checked !== false,
-                notifyNewVideos: newVideoNotificationsToggle?.checked !== false,
-                notifySiteUpdates: siteUpdateNotificationsToggle?.checked !== false
+                updateNotice: updateNoticeToggle?.checked !== false
             };
             localStorage.setItem('site-settings', JSON.stringify(settings));
             applySettings();
@@ -1894,9 +1641,6 @@
         notificationsToggle?.addEventListener('change', () => saveSettings(false));
         glassToggle?.addEventListener('change', () => saveSettings(false));
         updateNoticeToggle?.addEventListener('change', () => saveSettings(false));
-        personalNotificationsToggle?.addEventListener('change', () => saveSettings(false));
-        newVideoNotificationsToggle?.addEventListener('change', () => saveSettings(false));
-        siteUpdateNotificationsToggle?.addEventListener('change', () => saveSettings(false));
         saveButton?.addEventListener('click', () => {
             saveSettings(true);
             closeSettingsModal();
@@ -2348,7 +2092,7 @@
         });
 
         const trackedElements = document.querySelectorAll(
-            '.btn-action-contact, .btn-action-bio, .btn-action-qa, .btn-action-faq, .btn-action-year, .btn-action-youtube, .social-btn, #videoFaqBtn, #loadMoreVideos, #loadMoreTwitchClips, #themeToggle, #settingsToggle, #resetFilters, #supportChatToggle, #mobileSupportChatToggle, #mobileBottomSupportChat'
+            '.btn-action-contact, .btn-action-bio, .btn-action-qa, .btn-action-faq, .btn-action-year, .btn-action-youtube, .social-btn, #videoFaqBtn, #loadMoreVideos, #loadMoreTwitchClips, #themeToggle, #settingsToggle, #resetFilters'
         );
 
         trackedElements.forEach((element) => {
@@ -2364,11 +2108,9 @@
                                 ? 'load_more_videos'
                                 : element.id === 'loadMoreTwitchClips'
                                     ? 'load_more_twitch_clips'
-                                    : element.id === 'supportChatToggle' || element.id === 'mobileSupportChatToggle' || element.id === 'mobileBottomSupportChat'
-                                        ? 'support_chat_open'
-                                        : element.classList.contains('social-btn')
-                                            ? 'social_click'
-                                            : 'cta_click';
+                                    : element.classList.contains('social-btn')
+                                        ? 'social_click'
+                                        : 'cta_click';
 
             element.addEventListener('click', () => {
                 trackAnalyticsEvent(eventName, {
@@ -2382,79 +2124,6 @@
     function showWelcomeMessageOnce() {
         if (!localStorage.getItem('hasSeenWelcome')) {
             localStorage.setItem('hasSeenWelcome', 'true');
-        }
-    }
-    
-    // === ЧАТ ПОДДЕРЖКИ TELEGRAM ===
-    function openSupportChatModal() {
-        const modal = document.getElementById('supportChatModal');
-        if (!modal) return;
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
-        
-        // Прячем fallback, показываем iframe при открытии
-        const fallback = document.getElementById('chatFallback');
-        const iframe = document.getElementById('telegramChatIframe');
-        if (fallback) fallback.style.display = 'none';
-        if (iframe) iframe.style.display = 'block';
-        
-        trackAnalyticsEvent('support_chat_open', { source: 'button_click' });
-    }
-    
-    function closeSupportChatModal(event) {
-        if (event && event.target && event.target.id !== 'supportChatModal') return;
-        const modal = document.getElementById('supportChatModal');
-        if (!modal) return;
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
-    }
-    
-    function trackSupportChatOpen() {
-        trackAnalyticsEvent('support_chat_telegram_click', { source: 'modal_button' });
-    }
-    
-    function initSupportChat() {
-        const toggleBtn = document.getElementById('supportChatToggle');
-        const mobileToggle = document.getElementById('mobileSupportChatToggle');
-        const mobileBottomToggle = document.getElementById('mobileBottomSupportChat');
-        
-        const openHandler = () => openSupportChatModal();
-        
-        if (toggleBtn) toggleBtn.addEventListener('click', openHandler);
-        if (mobileToggle) mobileToggle.addEventListener('click', openHandler);
-        if (mobileBottomToggle) mobileBottomToggle.addEventListener('click', openHandler);
-        
-        // Обработка ошибки загрузки iframe — показываем fallback
-        const iframe = document.getElementById('telegramChatIframe');
-        if (iframe) {
-            iframe.addEventListener('error', () => {
-                const fallback = document.getElementById('chatFallback');
-                if (fallback) fallback.style.display = 'flex';
-                iframe.style.display = 'none';
-            });
-            
-            // Таймаут на случай, если iframe не загрузился (Telegram блокирует)
-            setTimeout(() => {
-                try {
-                    // Проверяем, загрузился ли iframe (доступ к contentDocument может вызвать ошибку из-за CORS)
-                    const doc = iframe.contentDocument || iframe.contentWindow?.document;
-                    if (!doc || !doc.body || doc.body.innerHTML.trim() === '') {
-                        const fallback = document.getElementById('chatFallback');
-                        if (fallback) {
-                            fallback.style.display = 'flex';
-                            iframe.style.display = 'none';
-                        }
-                    }
-                } catch (e) {
-                    // CORS ошибка — значит iframe загрузился с другого домена, всё ок
-                    // Telegram блокирует iframe, поэтому показываем fallback
-                    const fallback = document.getElementById('chatFallback');
-                    if (fallback) {
-                        fallback.style.display = 'flex';
-                        iframe.style.display = 'none';
-                    }
-                }
-            }, 3000);
         }
     }
     
@@ -2489,7 +2158,6 @@
         initSettings();
         await showSiteUpdateNotice();
         initNavigation();
-        initSupportChat();
         initAnalyticsTracking();
         initScrollTopButton();
         currentVideoSystem = new VideoSystem();
