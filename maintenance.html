@@ -41,8 +41,8 @@
     });
   </script>
 
-  <script src="https://cdn.tailwindcss.com" defer></script>
-  <script src="https://kit.fontawesome.com/b48beda69e.js" crossorigin="anonymous" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/b48beda69e.js" crossorigin="anonymous"></script>
 
   <style>
     :root {
@@ -332,16 +332,16 @@
 
 <body class="min-h-screen overflow-x-hidden selection:bg-indigo-200 selection:text-slate-900">
   <div id="loader"><div class="loader-spin" aria-label="Загрузка страницы"></div></div>
+  <div class="particles" id="particles"></div>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
   <div id="siteContent" class="hidden">
-    <div class="particles" id="particles"></div>
-    <div class="orb orb-one"></div>
-    <div class="orb orb-two"></div>
 
     <header class="relative z-20">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
         <a href="/" class="text-lg font-black tracking-[0.25em] text-white/90 uppercase">Mortis Play</a>
         <button id="themeToggle" class="theme-toggle" aria-label="Переключить тему">
-          <i id="themeIcon" class="fa-solid fa-moon"></i>
+          <i id="themeIcon" class="fa-solid"></i>
         </button>
       </div>
     </header>
@@ -412,7 +412,8 @@
       const isLight = theme === 'light';
       body.classList.toggle('light-theme', isLight);
       localStorage.setItem('theme', theme);
-      themeIcon.className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      themeIcon.classList.remove('fa-moon', 'fa-sun');
+      themeIcon.classList.add(isLight ? 'fa-sun' : 'fa-moon');
     };
 
     const initializeTheme = () => {
