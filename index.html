@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Mortis Play</title>
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W7QBLDDSSK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -107,22 +105,6 @@
       padding: 6rem 0;
       margin-bottom: 3rem;
     }
-    #accessButton { 
-      background-color: #ff4444; 
-      color: white; 
-      border: none; 
-      border-radius: 5px; 
-      padding: 12px 24px; 
-      font-size: 16px; 
-      transition: transform 0.3s, opacity 0.3s; 
-    }
-    #accessButton:hover:not(:disabled) { 
-      transform: scale(1.1); 
-    }
-    #accessButton:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
     .modal { 
       display: none; 
       position: fixed; 
@@ -161,11 +143,6 @@
     }
     body.dark .close {
       color: #e2e8f0; 
-    }
-    #countdown, #buttonCountdown {
-      color: white;
-      font-size: 1rem;
-      margin-top: 0.5rem;
     }
     .news-card, .update-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -252,27 +229,19 @@
         padding: 3rem 0;
         margin-bottom: 1.5rem;
       }
-      #countdown, #buttonCountdown {
-        font-size: 0.9rem;
-      }
-      .faq-question {
-        padding: 0.75rem;
-      }
-      .faq-answer {
-        padding: 0.75rem;
-      }
       .notification {
         padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
       }
+      .grid-cols-3 { grid-template-columns: 1fr; }
+      .grid-cols-7 { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body class="text-gray-800 font-sans">
   <canvas id="backgroundCanvas"></canvas>
 
-  <!-- Навигация -->
-  <nav id="nav-menu" class="fixed top-0 w-full bg-indigo-900 dark:bg-gray-900 text-white py-4 z-10" style="display: none;">
+  <nav id="nav-menu" class="fixed top-0 w-full bg-indigo-900 dark:bg-gray-900 text-white py-4 z-10">
     <div class="container mx-auto px-4 flex justify-between items-center">
       <a href="#welcome" class="text-xl font-bold">Mortis Play</a>
       <div class="hidden md:flex space-x-4">
@@ -285,6 +254,9 @@
         <a href="#projects" class="hover:text-indigo-300">Проекты</a>
         <a href="#news" class="hover:text-indigo-300">Новости</a>
         <a href="#updates" class="hover:text-indigo-300">Обновления</a>
+        <a href="#giveaway" class="hover:text-indigo-300">Розыгрыш</a>
+        <a href="#archive" class="hover:text-indigo-300">Архив обновлений</a>
+        <a href="#forum" class="hover:text-indigo-300">Форум</a>
         <a href="#contact" class="hover:text-indigo-300">Контакты</a>
         <a href="#faq" class="hover:text-indigo-300">FAQ</a>
         <a href="#twitch-section" class="hover:text-indigo-300">Twitch</a>
@@ -300,6 +272,9 @@
         <a href="#projects" class="py-2 hover:text-indigo-300">Проекты</a>
         <a href="#news" class="py-2 hover:text-indigo-300">Новости</a>
         <a href="#updates" class="py-2 hover:text-indigo-300">Обновления</a>
+        <a href="#giveaway" class="py-2 hover:text-indigo-300">Розыгрыш</a>
+        <a href="#archive" class="py-2 hover:text-indigo-300">Архив обновлений</a>
+        <a href="#forum" class="py-2 hover:text-indigo-300">Форум</a>
         <a href="#contact" class="py-2 hover:text-indigo-300">Контакты</a>
         <a href="#faq" class="py-2 hover:text-indigo-300">FAQ</a>
         <a href="#twitch-section" class="py-2 hover:text-indigo-300">Twitch</a>
@@ -307,31 +282,7 @@
     </div>
   </nav>
 
-  <!-- Заглушка -->
-  <section id="coming-soon" class="min-h-screen flex flex-col items-center justify-center text-center fade-in px-4">
-    <h1 class="text-2xl sm:text-4xl font-bold text-white mb-6">Mortis Play — Скоро открытие!</h1>
-    <p class="text-base sm:text-lg text-white mb-6">Готовлю для вас эпичный контент! Подпишись, чтобы не пропустить!</p>
-    <div class="flex flex-col sm:flex-row gap-4">
-      <a href="https://t.me/MortisPlayTG" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-full font-semibold transition main-telegram">Основной канал</a>
-      <a href="https://t.me/+VhpxzWl9ygYzMmFi" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-full font-semibold transition private-telegram">Частный канал (вход платный)</a>
-    </div>
-    <button id="accessButton" class="mt-6" disabled>Получить открытый доступ</button>
-    <div id="buttonCountdown" class="text-white mt-2"></div>
-    <div id="countdown" class="text-white mt-2"></div>
-  </section>
-
-  <!-- Модальное окно -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close">×</span>
-      <p>Сайт находится в раннем доступе! Спасибо за внимание!</p>
-      <p>Если вы обнаружите баг, ошибку или что то страшное, напишите мне в Telegram: <a href="https://t.me/dimap7221" target="_blank" class="text-indigo-600 dark:text-indigo-400 underline">@dimap7221</a></p>
-    </div>
-  </div>
-
-  <!-- Полная версия сайта -->
-  <div id="full-site" style="display: none;">
-    <!-- Приветствие -->
+  <div id="full-site">
     <section id="welcome" class="section py-16 text-center fade-in mt-16">
       <h1 class="text-2xl sm:text-4xl font-bold text-indigo-700 dark:text-indigo-300 mb-4 welcome-text">Йоу, это сайт Mortis Play! В этом сайте ты найдешь: ЭКСКЛЮЗИВНЫЕ ВИДЕО В КОТОРОМ ТЫ НИГДЕ НЕ НАЙДЕШЬ! Новости о сайте, обновление и многое другое! Врывайся вместе с нами, ведь многое что может произойти на сайте ;)</h1>
       <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mx-auto max-w-2xl">Готов к эпичным каткам, мемам и взрывному вайбу? Подписывайся на мои каналы и становись частью тусы! 😎</p>
@@ -341,11 +292,10 @@
       </div>
       <div class="mt-6 flex justify-center space-x-4">
         <a href="#stories" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-full font-semibold transition">Смотреть истории</a>
-        <a href="#updates" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-full font-semibold transition">Обновления</a>
+        <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-full font-semibold transition open-update-modal">Обновление</a>
       </div>
     </section>
 
-    <!-- Информация -->
     <section id="about" class="section pb-16">
       <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
         <video autoplay loop muted playsinline class="w-40 h-40 sm:w-48 sm:h-48 rounded-full border-4 border-indigo-200 mb-4 md:mb-0 md:mr-8 object-cover avatar" src="/assets/photo.mp4" type="video/mp4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -360,12 +310,12 @@
           <div class="mt-4 flex justify-center space-x-4">
             <a href="https://www.youtube.com/@MortisPlay" target="_blank" class="text-red-600 hover:text-red-700">YouTube</a>
             <a href="https://t.me/MortisPlayTG" target="_blank" class="text-blue-600 hover:text-blue-700">Telegram</a>
+            <a href="https://www.tiktok.com/@mortis.32?_t=ZM-8y9D60P1FQe&_r=1" target="_blank" class="text-purple-600 hover:text-purple-700">TikTok</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Мои истории -->
     <section id="stories" class="section bg-white dark:bg-gray-800 py-16">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Мои истории</h2>
@@ -379,7 +329,6 @@
       </div>
     </section>
 
-    <!-- Видео -->
     <section id="videos" class="section bg-white dark:bg-gray-800 py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-xl sm:text-2xl font-bold text-center text-indigo-700 dark:text-indigo-300 mb-8">Мои видео</h2>
@@ -411,24 +360,22 @@
       </div>
     </section>
 
-    <!-- Мемы -->
     <section id="memes" class="section bg-white dark:bg-gray-800 py-16">
-  <div class="container mx-auto px-4 text-center">
-    <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Мемы</h2>
-    <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">Идёт разработка мемов ...</p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-6">
-      <img src="/assets/meme_fail.gif" alt="" class="rounded shadow" loading="lazy">
-      <img src="/assets/meme_ugly_dance.gif" alt="" class="rounded shadow" loading="lazy">
-      <img src="/assets/meme_stream_moment.gif" alt="" class="rounded shadow" loading="lazy">
-      <img src="/assets/meme_game_win.gif" alt="" class="rounded shadow" loading="lazy">
-      <img src="/assets/meme_funny_chat.gif" alt="" class="rounded shadow" loading="lazy">
-      <img src="/assets/meme_epic_fail2.gif" alt="" class="rounded shadow" loading="lazy">
-      <img src="/assets/meme_dance_party.gif" alt="" class="rounded shadow" loading="lazy">
-    </div>
-  </div>
-</section>
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Мемы</h2>
+        <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">Идёт разработка мемов ...</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-6">
+          <img src="/assets/meme_fail.gif" alt="" class="rounded shadow" loading="lazy">
+          <img src="/assets/meme_ugly_dance.gif" alt="" class="rounded shadow" loading="lazy">
+          <img src="/assets/meme_stream_moment.gif" alt="" class="rounded shadow" loading="lazy">
+          <img src="/assets/meme_game_win.gif" alt="" class="rounded shadow" loading="lazy">
+          <img src="/assets/meme_funny_chat.gif" alt="" class="rounded shadow" loading="lazy">
+          <img src="/assets/meme_epic_fail2.gif" alt="" class="rounded shadow" loading="lazy">
+          <img src="/assets/meme_dance_party.gif" alt="" class="rounded shadow" loading="lazy">
+        </div>
+      </div>
+    </section>
 
-    <!-- Мемы от авторов -->
     <section id="fan-memes" class="section bg-white dark:bg-gray-800 py-16">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Мемы от авторов</h2>
@@ -437,7 +384,7 @@
           <li>📌 Мемы должны быть про игры или мой контент.</li>
           <li>🚫 Никаких оскорблений, политики или 18+ контента.</li>
           <li>✍️ Укажи свой ник или имя (например, @dimap7221).</li>
-          <li>📩 Присылай мемы в Telegram (<a href="https://t.me/dimap7221" class="text-indigo-600 dark:text-indigo-400 underline personal-telegram">@dimap7221</a>) или на email (<a href="mailto:mortisplay@mail.ru" class="text-indigo-600 dark:text-indigo-400 underline">mortisplay@mail.ru</a>).</li>
+          <li>📩 Присылай мемы в Telegram (<a href="https://t.me/Mortisplay_YT" class="text-indigo-600 dark:text-indigo-400 underline personal-telegram">MortisPlay</a>) или на email (<a href="mailto:mortisplay@mail.ru" class="text-indigo-600 dark:text-indigo-400 underline">mortisplay@mail.ru</a>).</li>
           <li>🏆 Лучшие мемы попадут на сайт и в стримы!</li>
         </ul>
         <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">Пока ждём первые шедевры! 🚀</p>
@@ -447,7 +394,6 @@
       </div>
     </section>
 
-    <!-- Проекты -->
     <section id="projects" class="section bg-white dark:bg-gray-800 py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-xl sm:text-2xl font-bold text-center text-indigo-700 dark:text-indigo-300 mb-6">Мои проекты</h2>
@@ -472,7 +418,6 @@
       </div>
     </section>
 
-    <!-- Новости -->
     <section id="news" class="section bg-white dark:bg-gray-800 py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-xl sm:text-2xl font-bold text-center text-indigo-700 dark:text-indigo-300 mb-6">Новости</h2>
@@ -491,67 +436,68 @@
           </div>
           <div class="news-card bg-gradient-to-r from-pink-500 to-red-500 rounded-lg p-6 shadow-lg text-white fade-in">
             <h3 class="text-lg font-semibold mb-2">Чем будет отличаться ранний доступ от полноценного доступа?</h3>
-            <p class="text-sm">Итак, на сегодня поговорим именно на эту тему, чем будет отличаться от открытого доступа до полной версии? Отвечаем: В полной версии будет новый раздел и до сих пор будут дополняться (в планах добавить розыгрыш), новые уникальные фоны на различные тематики, ЗАСЕКРЕЧЕННЫЕ ПОСТЫ В частном канале 😎 и многое другое. Пока ассоциируемся на новый раздел и на фоны тематики, на все остальное будут в 4 квартале или в 2026 году. И если вы не видели что за изменения, гляньте раздел "Обновление" вам надеюсь оно понравится)</p>
+            <p class="text-sm">Итак, на сегодня поговорим именно на эту тему, чем будет отличаться от открытого доступа до полной версии? Отвечаем: В полной версии будет новый раздел и до сих пор будут дополняться (в планах добавить розыгрыш, новый форум), новые уникальные фоны на различные тематики, ЗАСЕКРЕЧЕННЫЕ ПОСТЫ В частном канале 😎 и многое другое. Пока ассоциируемся на новые разделы и на фоны тематики, на все остальное будут в 4 квартале или в 2026 году. И если вы не видели что за изменения, гляньте раздел "Обновление" вам надеюсь оно понравится)</p>
             <p class="text-xs mt-2">С любовью Mortis32 <3</p>
-            <p class="text-xs mt-2">17 Июля 2025</p>
+            <p class="text-xs mt-2">17 Июля 2025 (изменен)</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Обновление -->
     <section id="updates" class="section bg-white dark:bg-gray-800 py-16">
       <div class="container mx-auto px-4 text-center">
-        <h2 class="text-xl sm:text-2xl font-bold text-center text-indigo-700 dark:text-indigo-300 mb-6">Последние обновления сайта (только официальные)</h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-center text-indigo-700 dark:text-indigo-300 mb-6">Последние обновления сайта</h2>
         <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">Исправление, удаление, добавление и так далее</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="update-card bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg p-6 shadow-lg text-white fade-in">
-            <h3 class="text-lg font-semibold mb-2">Обычное обновление</h3>
-            <p class="text-sm">Версия 4.5 — обновлены разделы «Мои истории» и «Видео» с переходом на RuTube, улучшены тексты и добавлена поддержка цветных заголовков.</p>
-            <p class="text-xs mt-2">Примечание: Обновления проводились до открытия доступа к сайту.</p>
-            <p class="text-xs mt-2">16 июля 2025</p>
-          </div>
-          <div class="update-card bg-gradient-to-r from-green-500 to-lime-500 rounded-lg p-6 shadow-lg text-white fade-in">
-            <h3 class="text-lg font-semibold mb-2">Небольшое обновление</h3>
-            <p class="text-sm">Версия 4.6 - Добавили дизайн к разделам и исправили куча багов.</p>
-            <p class="text-xs mt-2">16 июля 2025</p>
-          </div>
-          <div class="update-card bg-gradient-to-r from-orange-500 to-yellow-500 rounded-lg p-6 shadow-lg text-white fade-in">
-            <h3 class="text-lg font-semibold mb-2">Обычное обновление</h3>
-            <p class="text-sm">Версия 4.7 — добавлены крутой FAQ с ответами на твои вопросы и стильное уведомление для свежих новостей. Сайт становится ещё эпичнее — врывайся и проверяй! 😎</p>
-            <p class="text-xs mt-2">16 июля 2025</p>
-          </div>
-          <div class="update-card bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-6 shadow-lg text-white fade-in">
-            <h3 class="text-lg font-semibold mb-2">Маленькое обновление</h3>
-            <p class="text-sm">Версия 4.7.1 — оптимизированы скрипты активации кнопки и таймеров, улучшена структура кода для стабильности.</p>
-            <p class="text-xs mt-2">16 июля 2025</p>
-          </div>
-          <div class="update-card bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-6 shadow-lg text-white fade-in">
-            <h3 class="text-lg font-semibold mb-2">Небольшое обновление</h3>
-            <p class="text-sm">Версия 4.7.2 — Завезли новые мемы от создателя, теперь можете наслаждаться ими) Пофиксили баг в разделе "Мемы от авторов" Теперь больше не отображается странная надпись с пустым файлом.</p>
-            <p class="text-xs mt-2">Также мы добавили пометку о том, какая версия свежая. (NEW)</p>
-            <p class="text-xs mt-2">16 июля 2025</p>
-          </div>
-          <div class="update-card bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-6 shadow-lg text-white fade-in">
-            <h3 class="text-lg font-semibold mb-2">Небольшое обновление</h3>
-            <p class="text-sm">Версия 4.7.3 — Добавлен форум для общения и вопросов, данные сохраняются через Google Forms с ручной модерацией.</p>
-            <p class="text-xs mt-2">17 июля 2025</p>
-          </div>
-          <div class="update-card bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-6 shadow-lg text-white fade-in">
-            <h3 class="text-lg font-semibold mb-2">Небольшое обновление</h3>
-            <p class="text-sm">Версия 4.7.4 — Убран форум т.к они были нестабильными, вместо них добавлен новый раздел Twitch с клипами для эпичного вайба! 😎</p>
-            <p class="text-xs mt-2">17 июля 2025 *NEW*</p>
+     <div class="update-card bg-gradient-to-r from-red-500 to-red-500 rounded-lg p-6 shadow-lg text-white fade-in">
+            <h3 class="text-lg font-semibold mb-2">КРУПНОЕ ОБНОВЛЕНИЕ</h3>
+            <p class="text-sm">Версия 1.0 — Версия была сброшена до 1.0 из за открытие сайта. ДОБРО ПОЖАЛОВАТЬ НА ПЕРВОНАЧАЛЬНУЮ ВЕРСИЮ ОФИЦИАЛЬНОГО САЙТА!!! 
+Что добавлено: Раздел "Розыгрыши" - в этом разделе будут показываться шаблоны розыгрышей а сами конкурсы будут проводиться в основном Telegram канале. Вернули форум но пока находится в разработке, останется еще пару деталек и все готово) Добавили Раздел "Архив" в котором будут отображаться архив обновлений чтобы не мешало сайту работать. Добавили еще клипов к ПК версии.
+Что удалено: Удалена "Ленивая загрузка" для раздела "Twitch"
+Что изменено: Изменяем оформление "Форум" теперь он будет выглядеть более реалистично)
+Итак, сайт уже выглядит более реалистично но мы будем еще дорабатывать Множество разделов и оптимизацию над мобильными устройствами у которых слабо тянет наш сайт. На этом все, а мы пошли чинить форум.</p>
+            <p class="text-xs mt-2">22 июля 2025 *NEW*</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Контакты -->
+    <section id="giveaway" class="section bg-white dark:bg-gray-800 py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Розыгрыш</h2>
+        <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">Скоро стартует эпичный розыгрыш призов! Следи за новостями и участвуй за шанс выиграть крутые бонусы! 😎</p>
+      </div>
+    </section>
+
+    <section id="archive" class="section bg-white dark:bg-gray-800 py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Архив обновлений</h2>
+        <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">Здесь собрана история всех изменений сайта с момента запуска:</p>
+        <ul class="text-base sm:text-lg text-gray-700 dark:text-gray-300 text-left max-w-2xl mx-auto">
+          <li>Версия 4.5 (16 июля 2025): Переход на RuTube, цветные заголовки.</li>
+          <li>Версия 4.6 (16 июля 2025): Дизайн и фикс багов.</li>
+          <li>Версия 4.7 (16 июля 2025): FAQ и уведомления.</li>
+          <li>Версия 4.7.1 (16 июля 2025): Оптимизация скриптов.</li>
+          <li>Версия 4.7.2 (16 июля 2025): Новые мемы, фикс багов.</li>
+          <li>Версия 4.7.3 (17 июля 2025): Добавлен форум.</li>
+          <li>Версия 4.7.4 (17 июля 2025): Убран форум, добавлен Twitch.</li>
+          <li>Версия 4.7.5 (19 июля 2025): Ссылки на TikTok и Telegram.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="forum" class="section bg-white dark:bg-gray-800 py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Форум</h2>
+        <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">Форум пока на стадии разработки! Скоро здесь появится место для общения и вопросов. Следи за обновлениями! 😎</p>
+      </div>
+    </section>
+
     <section id="contact" class="section py-16">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-4">Связь со мной</h2>
         <p class="text-gray-600 dark:text-gray-300 mb-2">Хочешь предложить коллаб или просто поболтать? Пиши!</p>
-        <p class="text-gray-600 dark:text-gray-300 mb-2">Мой Telegram: <a href="https://t.me/dimap7221" class="text-indigo-600 dark:text-indigo-400 underline personal-telegram">@dimap7221</a></p>
+        <p class="text-gray-600 dark:text-gray-300 mb-2">Мой Telegram: <a href="https://t.me/Mortisplay_YT" class="text-indigo-600 dark:text-indigo-400 underline personal-telegram">MortisPlay</a></p>
         <p class="text-gray-600 dark:text-gray-300 mb-2">Telegram канал: <a href="https://t.me/MortisPlayTG" class="text-indigo-600 dark:text-indigo-400 underline main-telegram">@MortisPlayTG</a></p>
         <p class="text-gray-600 dark:text-gray-300 mb-2">Частный канал: <a href="https://t.me/+VhpxzWl9ygYzMmFi" class="text-indigo-600 dark:text-indigo-400 underline private-telegram">t.me/+VhpxzWl9ygYzMmFi</a></p>
         <p class="text-gray-600 dark:text-gray-300 mb-2">Email: <a href="mailto:mortisplay@mail.ru" class="text-indigo-600 dark:text-indigo-400 underline">mortisplay@mail.ru</a></p>
@@ -561,302 +507,304 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" class="section bg-white dark:bg-gray-800 py-16">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Часто задаваемые вопросы (FAQ)</h2>
         <div class="max-w-2xl mx-auto">
           <div class="faq-item">
             <div class="faq-question" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">Как связаться с тобой?</div>
-            <div class="faq-answer">Пиши мне в Telegram: <a href="https://t.me/dimap7221" class="text-indigo-600 dark:text-indigo-400 underline">@dimap7221</a>, или на email: <a href="mailto:mortisplay@mail.ru" class="text-indigo-600 dark:text-indigo-400 underline">mortisplay@mail.ru</a>.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">Когда сайт будет полностью открыт?</div>
-            <div class="faq-answer">Полное открытие запланировано на 22 июля 2025, следи за новостями!</div>
+            <div class="faq-answer">Пиши мне в Telegram: <a href="https://t.me/Mortisplay_YT" class="text-indigo-600 dark:text-indigo-400 underline">MortisPlay</a>, или на email: <a href="mailto:mortisplay@mail.ru" class="text-indigo-600 dark:text-indigo-400 underline">mortisplay@mail.ru</a>.</div>
           </div>
           <div class="faq-item">
             <div class="faq-question" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">Где найти эксклюзивные видео и всякие контенты?</div>
             <div class="faq-answer">Эксклюзивы доступны только на этом сайте и в частном Telegram-канале после подписки.</div>
           </div>
           <div class="faq-item">
-            <div class="faq-question" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">Почему в открытой версии, версия сайта обозначана выше 1.0?</div>
-            <div class="faq-answer">Так как это открытый доступ к сайту, она выглядит именно так, в полной версии она сбросится до 1.0.</div>
-          </div>
-          <div class="faq-item">
             <div class="faq-question" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">Как мне участвовать в мемах от автора?</div>
             <div class="faq-answer">Всё просто! Переходите в раздел "Мемы от автора", читаете правила, затем мне присылаете мем соблюдая правилам (18+ нельзя!) и в итоге я могу как одобрить мем соответсвующему правилу так и отклонить. И если вам одобрят мем его добавят на наш сайт) А если отклонят, ничего страшного вы можете быть лучше! *При одобрении не забудьте подписать свой ник либо в картинке либо я добавлю его вручную.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">Почему у меня не прогружаются клипы с Twitch и на мобильной версии только 2 клипы?</div>
+            <div class="faq-answer">Ранее была ленивая загрузка для оптимизации, но теперь все клипы отображаются сразу на всех устройствах.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">Когда вернут форум?</div>
+            <div class="faq-answer">Мы планируем его вернуть когда сайт будет открыт в полной версии) он будет немного доработанным и оформленным)</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Twitch -->
-<section id="twitch-section" class="section bg-white dark:bg-gray-800 py-16">
-  <div class="container mx-auto px-4 text-center">
-    <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Клипы с Twitch</h2>
-    <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">Смотри лучшие моменты в клипах! 😎</p>
-    <div id="twitch-content" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    <section id="twitch-section" class="section bg-white dark:bg-gray-800 py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Клипы с Twitch</h2>
+        <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">Смотри лучшие моменты в клипах! 😎</p>
+        <div id="twitch-content" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-    <script src="https://embed.twitch.tv/embed/v1.js"></script>
-    <script type="text/javascript">
-      // Массив с данными о клипах и Highlights
-      const twitchContent = [
-        {
-          type: "clip",
-          id: "OutstandingSmallPeachOneHand-34JGV7ccc7luTPSc",
-          title: "Отдали раунд на халяву XD"
-        },
-        {
-          type: "clip",
-          id: "ResoluteFlaccidFrogTF2John-Rsv5zTsbJDJvqnwD",
-          title: "XD"
-        },
-        {
-          type: "clip",
-          id: "GlutenFreeShortJuiceEleGiggle-Z5e2rv159RqomWb4",
-          title: "Да что она мне сделает?"
-        },
-        {
-          type: "highlight", // Для ярких моментов (VOD)
-          videoId: "2475851398",
-          startTime: "00:01:52", // Время начала в формате HH:MM:SS
-          title: "На контентик)"
-        }
-      ];
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
+        <script type="text/javascript">
+          const twitchContent = [
+            {
+              type: "clip",
+              id: "OutstandingSmallPeachOneHand-34JGV7ccc7luTPSc",
+              title: "Отдали раунд на халяву XD"
+            },
+            {
+              type: "clip",
+              id: "ResoluteFlaccidFrogTF2John-Rsv5zTsbJDJvqnwD",
+              title: "XD"
+            },
+            {
+              type: "clip",
+              id: "GlutenFreeShortJuiceEleGiggle-Z5e2rv159RqomWb4",
+              title: "Да что она мне сделает?"
+            },
+            {
+              type: "clip",
+              id: "WanderingBelovedBeaverGingerPower-BwSFIOn5RR_Sf1A3",
+              title: "ПУНЬК"
+            },
+            {
+              type: "clip",
+              id: "CuteCuteOrangeLitFam-IsbKNAtJlF0qnbAE",
+              title: "Крик помощи"
+            },
+            {
+              type: "highlight",
+              videoId: "2475851398",
+              startTime: "00:01:52",
+              title: "На контентик)"
+            }
+          ];
 
-      // Генерация контента с адаптацией
-      const twitchContentDiv = document.getElementById("twitch-content");
-      twitchContent.forEach((item, index) => {
-        if (window.innerWidth <= 640 && index >= 2) return;
+          const twitchContentDiv = document.getElementById("twitch-content");
+          twitchContent.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.className = "video-container relative";
+            div.style.maxWidth = "100%";
+            div.style.aspectRatio = "16 / 9";
 
-        const div = document.createElement("div");
-        div.className = "video-container relative";
-        div.style.maxWidth = "100%";
-        div.style.aspectRatio = "16 / 9";
+            if (item.type === "clip") {
+              const iframe = document.createElement("iframe");
+              iframe.src = `https://clips.twitch.tv/embed?clip=${item.id}&parent=${window.location.hostname}`;
+              iframe.width = "100%";
+              iframe.height = "100%";
+              iframe.allowFullscreen = true;
+              div.appendChild(iframe);
+            } else if (item.type === "highlight") {
+              const iframe = document.createElement("iframe");
+              iframe.src = `https://player.twitch.tv/?video=${item.videoId}&parent=${window.location.hostname}&t=${item.startTime}`;
+              iframe.width = "100%";
+              iframe.height = "100%";
+              iframe.allowFullscreen = true;
+              div.appendChild(iframe);
+            }
 
-        if (item.type === "clip") {
-          const iframe = document.createElement("iframe");
-          iframe.src = `https://clips.twitch.tv/embed?clip=${item.id}&parent=${window.location.hostname}`;
-          iframe.width = "100%";
-          iframe.height = "100%";
-          iframe.allowFullscreen = true;
-          iframe.loading = "lazy";
-          div.appendChild(iframe);
-        } else if (item.type === "highlight") {
-          const iframe = document.createElement("iframe");
-          iframe.src = `https://player.twitch.tv/?video=${item.videoId}&parent=${window.location.hostname}&t=${item.startTime}`;
-          iframe.width = "100%";
-          iframe.height = "100%";
-          iframe.allowFullscreen = true;
-          iframe.loading = "lazy";
-          div.appendChild(iframe);
-        }
+            const title = document.createElement("p");
+            title.textContent = item.title;
+            title.className = "mt-2 text-sm text-gray-600 dark:text-gray-300 text-center";
+            div.appendChild(title);
 
-        const title = document.createElement("p");
-        title.textContent = item.title;
-        title.className = "mt-2 text-sm text-gray-600 dark:text-gray-300 text-center";
-        div.appendChild(title);
+            twitchContentDiv.appendChild(div);
+          });
+        </script>
+      </div>
+    </section>
 
-        twitchContentDiv.appendChild(div);
-      });
-    </script>
-  </div>
-</section>
-    <!-- Уведомление -->
     <div id="notification" class="notification">
-      Добро пожаловать на Mortis Play! Сайт в разработке, следи за обновлениями. 😎
+      Добро пожаловать на Mortis Play!
     </div>
 
-    <!-- Футер -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">×</span>
+        <p>Сайт находится в раннем доступе! Спасибо за внимание!</p>
+        <p>Если вы обнаружите баг, ошибку или что то страшное, напишите мне в Telegram: <a href="https://t.me/Mortisplay_YT" target="_blank" class="text-indigo-600 dark:text-indigo-400 underline">MortisPlay</a></p>
+      </div>
+    </div>
+
+    <div id="update-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">×</span>
+        <h3 class="text-xl font-bold text-indigo-700 dark:text-indigo-300 mb-2">Последние обновления</h3>
+        <p class="text-base text-gray-700 dark:text-gray-300">Версия 1.0 (22 июля 2025 *NEW*):</p>
+        <ul class="text-base text-gray-700 dark:text-gray-300 text-left ml-4">
+          <li>Что добавлено: Раздел "Розыгрыши" - в этом разделе будут показываться шаблоны розыгрышей а сами конкурсы будут проводиться в основном Telegram канале. Вернули форум но пока находится в разработке, останется еще пару деталек и все готово) Добавили Раздел "Архив" в котором будут отображаться архив обновлений чтобы не мешало сайту работать. Добавили еще клипов к ПК версии.
+Что удалено: Удалена "Ленивая загрузка" для раздела "Twitch"
+Что изменено: Изменяем оформление "Форум" теперь он будет выглядеть более реалистично)</li>
+        </ul>
+        <p class="text-base text-gray-700 dark:text-gray-300 mt-2">Следи за новостями для следующих обновлений! 😎</p>
+      </div>
+    </div>
+
     <footer class="bg-indigo-900 dark:bg-gray-900 text-white text-center py-4">
-      <p class="text-sm">© 2025 Mortis Play. Все права защищены. Версия 4.7.4</p>
+      <p class="text-sm">© 2025 Mortis Play. Все права защищены. Версия 1.0</p>
     </footer>
   </div>
 
   <script type="text/javascript">
-  var gk_isXlsx = false;
-  var gk_xlsxFileLookup = {};
-  var gk_fileData = {};
-  function filledCell(cell) {
-    return cell !== '' && cell != null;
-  }
-  function loadFileData(filename) {
-    if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-      try {
-        var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-        var firstSheetName = workbook.SheetNames[0];
-        var worksheet = workbook.Sheets[firstSheetName];
-        var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-        var filteredData = jsonData.filter(row => row.some(filledCell));
-        var headerRowIndex = filteredData.findIndex((row, index) =>
-          row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-        );
-        if (headerRowIndex === -1 || headerRowIndex > 25) {
-          headerRowIndex = 0;
-        }
-        var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
-        csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-        return csv;
-      } catch (e) {
-        console.error(e);
-        return "";
-      }
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+      return cell !== '' && cell != null;
     }
-    return gk_fileData[filename] || "";
-  }
-</script>
-<script>
-  // Проверка параметра ?dev=true и показ полной версии
+    function loadFileData(filename) {
+      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+        try {
+          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+          var firstSheetName = workbook.SheetNames[0];
+          var worksheet = workbook.Sheets[firstSheetName];
+          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+          var filteredData = jsonData.filter(row => row.some(filledCell));
+          var headerRowIndex = filteredData.findIndex((row, index) =>
+            row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+          );
+          if (headerRowIndex === -1 || headerRowIndex > 25) {
+            headerRowIndex = 0;
+          }
+          var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+          return csv;
+        } catch (e) {
+          console.error(e);
+          return "";
+        }
+      }
+      return gk_fileData[filename] || "";
+    }
+  </script>
+  <script>
   const urlParams = new URLSearchParams(window.location.search);
   const isDev = urlParams.get('dev') === 'true';
   const comingSoon = document.getElementById('coming-soon');
   const fullSite = document.getElementById('full-site');
   const navMenu = document.getElementById('nav-menu');
-  const accessButton = document.getElementById('accessButton');
-  const buttonCountdownElement = document.getElementById('buttonCountdown');
-  const countdownElement = document.getElementById('countdown');
+
+  // Активация сайта
+  const openDate = new Date('2025-07-22T10:00:00+03:00');
+  if (new Date() >= openDate || isDev) {
+    if (comingSoon) comingSoon.style.display = 'none'; // Защита от ошибки, если элемент отсутствует
+    if (fullSite) fullSite.style.display = 'block';
+    if (navMenu) navMenu.style.display = 'block';
+  }
+
+  // Модальные окна
   const modal = document.getElementById('modal');
-  const modalClose = document.getElementsByClassName('close')[0];
+  const updateModal = document.getElementById('update-modal');
+  const modalClose = document.getElementsByClassName('close');
   const notification = document.getElementById('notification');
 
-  if (isDev) {
-    comingSoon.style.display = 'none';
-    fullSite.style.display = 'block';
-    navMenu.style.display = 'block';
-  }
-
-  // Таймер активации кнопки до 16 июля 2025, 10:00 МСК
-  const activationDate = new Date('2025-07-16T10:00:00+03:00');
-  function updateButtonCountdown() {
-    const now = new Date();
-    const timeLeft = activationDate - now;
-
-    if (timeLeft <= 0) {
-      buttonCountdownElement.textContent = "Кнопка активирована!";
-      accessButton.disabled = false;
-    } else {
-      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-      buttonCountdownElement.textContent = `Активация кнопки через ${days}д ${hours}ч ${minutes}м ${seconds}с`;
-      accessButton.disabled = true;
+  if (modalClose.length > 0) {
+    for (let i = 0; i < modalClose.length; i++) {
+      modalClose[i].addEventListener('click', () => {
+        if (modal) modal.style.display = 'none';
+        if (updateModal) updateModal.style.display = 'none';
+      });
     }
   }
-
-  // Таймер открытия до 22 июля 2025, 10:00 МСК
-  const openDate = new Date('2025-07-22T10:00:00+03:00');
-  function updateOpenCountdown() {
-    const now = new Date();
-    const timeLeft = openDate - now;
-
-    if (timeLeft <= 0) {
-      countdownElement.textContent = "Сайт открыт!";
-    } else {
-      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-      countdownElement.textContent = `Открытие через ${days}д ${hours}ч ${minutes}м ${seconds}с`;
-    }
-  }
-
-  // Обновление таймеров
-  setInterval(() => {
-    updateButtonCountdown();
-    updateOpenCountdown();
-  }, 1000);
-
-  // Обработка клика по кнопке с модальным окном и переключением сайта
-  accessButton.addEventListener('click', () => {
-    if (!accessButton.disabled) {
-      modal.style.display = 'block';
-      gtag('event', 'access_granted', { 'event_category': 'Access', 'event_label': 'OpenAccess' });
-      comingSoon.style.display = 'none';
-      fullSite.style.display = 'block';
-      navMenu.style.display = 'block';
-    }
-  });
-
-  // Закрытие модального окна
-  modalClose.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
 
   window.addEventListener('click', (event) => {
-    if (event.target == modal) {
-      modal.style.display = 'none';
-    }
+    if (modal && event.target == modal) modal.style.display = 'none';
+    if (updateModal && event.target == updateModal) updateModal.style.display = 'none';
   });
 
-  // Бургер-меню
-  document.getElementById('burger').addEventListener('click', () => {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-  });
-
-  // Анимация фона с плавающими смайликами
-  const canvas = document.getElementById('backgroundCanvas');
-  const ctxCanvas = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const emotes = [">:(", ">:D", ":)", ":/", ":P", "^_^", "-_-"];
-  const particles = [];
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 20 + 10;
-      this.speedX = Math.random() * 2 - 1;
-      this.speedY = Math.random() * 2 - 1;
-      this.emote = emotes[Math.floor(Math.random() * emotes.length)];
-    }
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    }
-    draw() {
-      ctxCanvas.fillStyle = document.body.classList.contains('dark') ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 0.5)';
-      ctxCanvas.font = `${this.size}px Arial`;
-      ctxCanvas.fillText(this.emote, this.x, this.y);
-    }
-  }
-
-  function init() {
-    const particleCount = window.innerWidth <= 640 ? 20 : 50;
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-  }
-
-  function animate() {
-    ctxCanvas.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(particle => {
-      particle.update();
-      particle.draw();
+  // Мобильное меню
+  const burger = document.getElementById('burger');
+  if (burger) {
+    burger.addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) menu.classList.toggle('hidden');
     });
-    requestAnimationFrame(animate);
   }
 
-  init();
-  animate();
+  // Фон с canvas
+  const canvas = document.getElementById('backgroundCanvas');
+  if (canvas) {
+    const ctxCanvas = canvas.getContext('2d');
+    let animationFrameId;
 
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
 
-  // Плавное появление блоков
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const emotes = [">:(", ">:D", ":)", ":/", ":P", "^_^", "-_-"];
+    const particles = [];
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 15 + 5; // Уменьшен размер для оптимизации
+        this.speedX = Math.random() * 1 - 0.5; // Уменьшена скорость
+        this.speedY = Math.random() * 1 - 0.5;
+        this.emote = emotes[Math.floor(Math.random() * emotes.length)];
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctxCanvas.fillStyle = document.body.classList.contains('dark') ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.4)';
+        ctxCanvas.font = `${this.size}px Arial`;
+        ctxCanvas.fillText(this.emote, this.x, this.y);
+      }
+    }
+
+    function init() {
+      const particleCount = window.innerWidth <= 640 ? 10 : 30; // Оптимизировано для мобильных
+      particles.length = 0; // Очистка перед инициализацией
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      if (ctxCanvas) {
+        ctxCanvas.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(particle => {
+          particle.update();
+          particle.draw();
+        });
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    }
+
+    init();
+    animate();
+
+    // Остановка анимации при скрытии canvas (мобильные устройства)
+    const mediaQuery = window.matchMedia('(max-width: 640px)');
+    function handleMediaChange(e) {
+      if (e.matches) {
+        cancelAnimationFrame(animationFrameId);
+        canvas.style.display = 'none';
+      } else {
+        canvas.style.display = 'block';
+        init();
+        animate();
+      }
+    }
+    mediaQuery.addEventListener('change', handleMediaChange);
+    handleMediaChange(mediaQuery);
+  }
+
+  // Intersection Observer для fade-in
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.fade-in').forEach(el => {
+    if (el) observer.observe(el);
+  });
 
   // Темная тема
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -871,7 +819,7 @@
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
-      target.scrollIntoView({ behavior: 'smooth' });
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
       document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
       this.classList.add('active');
     });
@@ -882,35 +830,33 @@
     let currentSection = '';
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
-      if (scrollY >= sectionTop - 100) {
-        currentSection = section.getAttribute('id');
-      }
+      if (scrollY >= sectionTop - 100) currentSection = section.getAttribute('id');
     });
     document.querySelectorAll('nav a').forEach(a => {
       a.classList.remove('active');
-      if (a.getAttribute('href') === `#${currentSection}`) {
-        a.classList.add('active');
-      }
+      if (a.getAttribute('href') === `#${currentSection}`) a.classList.add('active');
     });
   });
 
-  // Анимация статистики
+  // Анимация значений
   function animateValue(id, start, end, duration) {
     const element = document.getElementById(id);
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      element.textContent = Math.floor(progress * (end - start) + start) + (id === 'viewCount' ? 'K' : '');
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
+    if (element) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.textContent = Math.floor(progress * (end - start) + start) + (id === 'viewCount' ? 'K' : '');
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
   }
   animateValue("subscriberCount", 0, 420, 2000);
   animateValue("viewCount", 0, 146, 2000);
 
-  // Google Analytics события
-  document.querySelector('.donation-link').addEventListener('click', () => {
+  // События для аналитики
+  document.querySelector('.donation-link')?.addEventListener('click', () => {
     gtag('event', 'click_donation', { 'event_category': 'Engagement', 'event_label': 'DonationAlerts' });
   });
   document.querySelectorAll('.main-telegram').forEach(link => {
@@ -928,17 +874,23 @@
       gtag('event', 'click_telegram', { 'event_category': 'Engagement', 'event_label': 'PersonalTelegram' });
     });
   });
-  document.querySelector('.youtube-link').addEventListener('click', () => {
+  document.querySelector('.youtube-link')?.addEventListener('click', () => {
     gtag('event', 'click_youtube', { 'event_category': 'Engagement', 'event_label': 'YouTubeChannel' });
   });
 
   // Уведомление
-  if (!localStorage.getItem('notificationShown')) {
+  if (notification && !localStorage.getItem('notificationShown')) {
     notification.style.display = 'block';
     setTimeout(() => {
       localStorage.setItem('notificationShown', 'true');
     }, 4500);
   }
+
+  // Открытие модального окна обновлений
+  document.querySelector('.open-update-modal')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (updateModal) updateModal.style.display = 'block';
+  });
 </script>
 </body>
 </html>
