@@ -615,6 +615,15 @@
       Добро пожаловать на Mortis Play!
     </div>
 
+    <div id="old-version-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">×</span>
+        <h3 class="text-xl font-bold text-indigo-700 dark:text-indigo-300 mb-2">⚠️ Внимание!</h3>
+        <p class="text-base text-gray-700 dark:text-gray-300">Это старая версия сайта — <strong>v1.0</strong>.</p>
+        <p class="text-base text-gray-700 dark:text-gray-300 mt-2">Прежняя (новая) версия включится через несколько часов. Спасибо за понимание! 😎</p>
+      </div>
+    </div>
+
     <div id="modal" class="modal">
       <div class="modal-content">
         <span class="close">×</span>
@@ -692,6 +701,7 @@
   // Модальные окна
   const modal = document.getElementById('modal');
   const updateModal = document.getElementById('update-modal');
+  const oldVersionModal = document.getElementById('old-version-modal');
   const modalClose = document.getElementsByClassName('close');
   const notification = document.getElementById('notification');
 
@@ -700,6 +710,7 @@
       modalClose[i].addEventListener('click', () => {
         if (modal) modal.style.display = 'none';
         if (updateModal) updateModal.style.display = 'none';
+        if (oldVersionModal) oldVersionModal.style.display = 'none';
       });
     }
   }
@@ -707,7 +718,14 @@
   window.addEventListener('click', (event) => {
     if (modal && event.target == modal) modal.style.display = 'none';
     if (updateModal && event.target == updateModal) updateModal.style.display = 'none';
+    if (oldVersionModal && event.target == oldVersionModal) oldVersionModal.style.display = 'none';
   });
+
+  // Предупреждение о старой версии v1.0
+  if (oldVersionModal && !localStorage.getItem('oldVersionModalShown')) {
+    oldVersionModal.style.display = 'block';
+    localStorage.setItem('oldVersionModalShown', 'true');
+  }
 
   // Мобильное меню
   const burger = document.getElementById('burger');
