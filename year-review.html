@@ -63,12 +63,12 @@
         radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.12) 0 1.2px, transparent 1.8px),
         radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.18), transparent 45%),
         linear-gradient(180deg, rgba(8, 15, 30, 0.98) 0%, rgba(16, 24, 43, 0.95) 50%, rgba(32, 49, 74, 0.97) 100%);
-      animation: gradientShift 18s ease-in-out infinite alternate;
-      filter: blur(0.7px);
       pointer-events: none;
       overflow: hidden;
+      transform: translateZ(0);
     }
 
+    /* Pseudo-element overlays are GPU-heavy on mobile; only animate on large screens */
     .gradient-bg::before {
       content: '';
       position: absolute;
@@ -77,7 +77,6 @@
         radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.16), transparent 25%),
         radial-gradient(circle at 80% 75%, rgba(255, 255, 255, 0.12), transparent 20%),
         linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.06) 100%);
-      animation: shimmerGlow 10s ease-in-out infinite alternate;
     }
 
     .gradient-bg::after {
@@ -87,22 +86,6 @@
       background:
         radial-gradient(ellipse at 50% 90%, rgba(34, 211, 238, 0.14), transparent 38%),
         radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.08), transparent 42%);
-      animation: auroraGlow 14s ease-in-out infinite alternate;
-    }
-
-    @keyframes gradientShift {
-      0% { transform: scale(1) rotate(0deg); }
-      100% { transform: scale(1.08) rotate(4deg); }
-    }
-
-    @keyframes shimmerGlow {
-      0%, 100% { opacity: 0.7; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.03); }
-    }
-
-    @keyframes auroraGlow {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-3%); }
     }
 
     /* Snowfall and particles */
@@ -119,11 +102,8 @@
       background: radial-gradient(circle, rgba(255,255,255,0.95), rgba(191,219,254,0.2) 55%, transparent 72%);
       border-radius: 50%;
       opacity: 0.4;
-      mix-blend-mode: screen;
-      filter: blur(0.7px);
       animation: float 20s infinite linear;
-      will-change: transform, opacity;
-      box-shadow: 0 0 8px rgba(255,255,255,0.2);
+      transform: translateZ(0);
     }
 
     .snowflake {
@@ -133,7 +113,7 @@
       font-size: 1rem;
       opacity: 0.8;
       animation: snowfall linear infinite;
-      text-shadow: 0 0 8px rgba(255,255,255,0.4);
+      transform: translateZ(0);
     }
 
     @keyframes float {
@@ -150,25 +130,32 @@
     /* Glass morphism card */
     .glass-card {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
-      backdrop-filter: blur(18px) saturate(140%);
-      -webkit-backdrop-filter: blur(18px) saturate(140%);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 24px;
       box-shadow:
         0 10px 30px rgba(2, 6, 23, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease;
       position: relative;
       overflow: hidden;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 700px;
     }
 
-    .glass-card:hover {
-      transform: translateY(-10px);
-      box-shadow:
-        0 18px 45px rgba(2, 6, 23, 0.26),
-        0 0 0 1px rgba(139, 92, 246, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      border-color: rgba(139, 92, 246, 0.28);
+    /* backdrop-filter is very expensive on mobile GPU; enable only on capable large screens */
+    @media (hover: hover) and (min-width: 769px) {
+      .glass-card {
+        backdrop-filter: blur(18px) saturate(140%);
+        -webkit-backdrop-filter: blur(18px) saturate(140%);
+      }
+      .glass-card:hover {
+        transform: translateY(-10px);
+        box-shadow:
+          0 18px 45px rgba(2, 6, 23, 0.26),
+          0 0 0 1px rgba(139, 92, 246, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        border-color: rgba(139, 92, 246, 0.28);
+      }
     }
 
     /* Year cards with gradient borders */
@@ -177,6 +164,8 @@
       border-radius: 24px;
       overflow: hidden;
       z-index: 1;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 700px;
     }
 
     .year-card::before {
@@ -186,18 +175,24 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      background: linear-gradient(45deg, 
+      background: linear-gradient(45deg,
         rgba(59, 130, 246, 0.35), rgba(139, 92, 246, 0.35), rgba(236, 72, 153, 0.35), rgba(245, 158, 11, 0.22), rgba(16, 185, 129, 0.28), rgba(59, 130, 246, 0.35));
       background-size: 300% 300%;
       border-radius: 26px;
       z-index: -1;
-      animation: gradientBorder 4s ease infinite;
       opacity: 0.35;
     }
 
     @keyframes gradientBorder {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
+    }
+
+    /* Animated gradient border is GPU-heavy; keep static on mobile, animate only on hover-capable large screens */
+    @media (hover: hover) and (min-width: 769px) {
+      .year-card::before {
+        animation: gradientBorder 4s ease infinite;
+      }
     }
 
     /* Year-specific gradient overlays */
@@ -260,14 +255,19 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 1.5rem;
-      transition: all 0.3s ease;
+      transition: border-color 0.3s ease, background 0.3s ease;
       position: relative;
     }
 
-    .month-card:hover {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-      border-color: rgba(139, 92, 246, 0.22);
-      transform: translateY(-2px);
+    @media (hover: hover) and (min-width: 769px) {
+      .month-card {
+        transition: all 0.3s ease;
+      }
+      .month-card:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+        border-color: rgba(139, 92, 246, 0.22);
+        transform: translateY(-2px);
+      }
     }
 
     .month-card::before {
@@ -420,6 +420,7 @@
       
       .gradient-text {
         font-size: 3rem !important;
+        animation: none;
       }
       
       .year-number {
@@ -435,6 +436,27 @@
       .emoji {
         font-size: 1.25rem;
         margin-right: 0.5rem;
+        animation: none;
+      }
+    }
+
+    /* Static background on mobile — avoids GPU-bound full-screen gradient animation */
+    @media (max-width: 768px) {
+      .gradient-bg::before,
+      .gradient-bg::after {
+        animation: none;
+      }
+    }
+
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -808,13 +830,25 @@
   </main>
 
   <script>
-    // Create floating particles and snowflakes
+    // Create floating particles and snowflakes.
+    // Reduced count on mobile, disabled entirely for prefers-reduced-motion.
     function createParticles() {
       const container = document.getElementById('particles');
-      const particleCount = 20;
-      const snowflakeCount = 18;
+      const containerStyle = window.getComputedStyle(container);
+      if (containerStyle.display === 'none') return;
+
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      // Fewer DOM nodes on small screens = far less layout/paint work.
+      const particleCount = isMobile ? 6 : 20;
+      const snowflakeCount = isMobile ? 6 : 18;
       const snowSymbols = ['❄', '✦', '✧'];
       
+      // Use a DocumentFragment to batch DOM insertion (one reflow instead of many).
+      const frag = document.createDocumentFragment();
+
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
@@ -833,7 +867,7 @@
         particle.style.animationDelay = `${delay}s`;
         particle.style.opacity = Math.random() * 0.2 + 0.08;
         
-        container.appendChild(particle);
+        frag.appendChild(particle);
       }
 
       for (let i = 0; i < snowflakeCount; i++) {
@@ -854,8 +888,10 @@
         flake.style.transform = `translateX(${drift}px)`;
         flake.style.opacity = Math.random() * 0.5 + 0.4;
         
-        container.appendChild(flake);
+        frag.appendChild(flake);
       }
+
+      container.appendChild(frag);
     }
     
     // Intersection observer for fade-in animations
@@ -886,8 +922,6 @@
     
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
-      createParticles();
-      
       // Observe fade-in elements
       document.querySelectorAll('.fade-in').forEach(el => {
         observer.observe(el);
@@ -904,38 +938,86 @@
         });
       });
       
-      // Highlight current year in navigation based on scroll
+      // Lazy particle creation: build only when the background is near the viewport
+      // and defer the work so it never blocks first paint or scroll.
+      const particlesEl = document.getElementById('particles');
+      let particlesCreated = false;
+      const makeParticles = () => {
+        if (particlesCreated) return;
+        particlesCreated = true;
+        const run = () => createParticles();
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(run, { timeout: 500 });
+        } else {
+          setTimeout(run, 0);
+        }
+      };
+
+      if (particlesEl && 'IntersectionObserver' in window) {
+        const particlesObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              makeParticles();
+              particlesObserver.disconnect();
+            }
+          });
+        }, { rootMargin: '50px' });
+        particlesObserver.observe(particlesEl);
+      } else if (particlesEl) {
+        makeParticles();
+      }
+      
+      // Highlight current year in navigation based on scroll.
+      // Use IntersectionObserver (no scroll handler) and only touch DOM
+      // when the active year actually changes.
       const yearSections = document.querySelectorAll('.year-card');
       const yearLinks = document.querySelectorAll('a[href^="#"]');
-      
-      const highlightCurrentYear = () => {
-        const scrollPosition = window.scrollY + 150;
-        
-        let currentYear = '';
-        yearSections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          
-          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            currentYear = section.id;
-          }
-        });
-        
+      let currentYear = '';
+
+      const setActiveYear = (id) => {
+        if (id === currentYear) return;
+        currentYear = id;
         yearLinks.forEach(link => {
-          link.classList.remove('bg-opacity-100');
+          link.classList.remove('bg-opacity-100', 'scale-110');
           link.classList.add('bg-opacity-50');
-          
           if (link.getAttribute('href') === `#${currentYear}`) {
             link.classList.remove('bg-opacity-50');
             link.classList.add('bg-opacity-100', 'scale-110');
-          } else {
-            link.classList.remove('scale-110');
           }
         });
       };
-      
-      window.addEventListener('scroll', highlightCurrentYear);
-      highlightCurrentYear(); // Initial check
+
+      if ('IntersectionObserver' in window && yearSections.length) {
+        const yearObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setActiveYear(entry.target.id);
+            }
+          });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        yearSections.forEach(section => yearObserver.observe(section));
+      } else {
+        // Fallback for older browsers: rAF-throttled scroll handler.
+        let ticking = false;
+        const highlightCurrentYear = () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(() => {
+              const scrollPosition = window.scrollY + 150;
+              let id = '';
+              yearSections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                if (scrollPosition >= top && scrollPosition < top + height) id = section.id;
+              });
+              setActiveYear(id);
+              ticking = false;
+            });
+          }
+        };
+        window.addEventListener('scroll', highlightCurrentYear, { passive: true });
+        highlightCurrentYear();
+      }
     });
   </script>
 </body>
