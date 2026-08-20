@@ -1988,19 +1988,12 @@
             secretButton.remove();
         }
         
-        // Кнопка с вопросительным знаком — пульсация до 23.07.2026 10:00, затем исчезновение
+        // Кнопка FAQ доступна всегда, когда видео не загрузились
         const questionBtn = document.getElementById('videoFaqBtn');
-        const deadline = new Date('2026-07-23T10:00:00+10:00'); // 23.07.2026 10:00 по Владивостоку (UTC+10)
-        const now = new Date();
-        
+
         if (questionBtn) {
-            if (now >= deadline) {
-                // После дедлайна — кнопка исчезает
-                questionBtn.style.display = 'none';
-            } else {
-                // До дедлайна — пульсация включена
-                questionBtn.classList.add('pulse-btn');
-            }
+          questionBtn.style.display = 'inline-flex';
+          questionBtn.classList.add('pulse-btn');
         }
     }
 
